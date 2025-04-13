@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/VChet/git-merged-branches/issues"
   },
-  "homepage": "https://github.com/твой-аккаунт/git-merged-branches#readme",
+  "homepage": "https://github.com/VChet/git-merged-branches#readme",
   "bin": {
     "git-merged-branches": "./dist/index.js",
     "gmb": "./dist/index.js"
