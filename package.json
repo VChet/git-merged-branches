@@ -20,6 +20,11 @@
     "git-merged-branches": "dist/index.js",
     "gmb": "dist/index.js"
   },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE.MD"
+  ],
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && node build.js",
