@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/release-it@18/schema/release-it.json",
+  "git": {
+    "commitMessage": "chore(release): ${version}",
+    "tagName": "${version}",
+    "requireCleanWorkingDir": true
+  },
+  "npm": {
+    "publish": true,
+    "skipChecks": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "${version}"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md"
+    }
+  },
+  "hooks": {
+    "after:bump": "npm run build"
+  }
+}
