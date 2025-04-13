@@ -2,7 +2,7 @@
   "name": "git-merged-branches",
   "description": "CLI tool to list all Git branches merged into a base branch with issue link formatting",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "author": {
     "name": "VChet",
@@ -15,11 +15,16 @@
   "bugs": {
     "url": "https://github.com/VChet/git-merged-branches/issues"
   },
-  "homepage": "https://github.com/твой-аккаунт/git-merged-branches#readme",
+  "homepage": "https://github.com/VChet/git-merged-branches#readme",
   "bin": {
-    "git-merged-branches": "./dist/index.js",
-    "gmb": "./dist/index.js"
+    "git-merged-branches": "dist/index.js",
+    "gmb": "dist/index.js"
   },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE.MD"
+  ],
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && node build.js",
@@ -27,9 +32,11 @@
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
-    "test": "vitest"
+    "test": "vitest",
+    "release": "release-it"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^10.0.0",
     "@types/node": "^22.14.1",
     "esbuild": "^0.25.2",
     "eslint": "^9.24.0",
