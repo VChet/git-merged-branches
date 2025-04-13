@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/VChet/git-merged-branches#readme",
   "bin": {
-    "git-merged-branches": "./dist/index.js",
-    "gmb": "./dist/index.js"
+    "git-merged-branches": "dist/index.js",
+    "gmb": "dist/index.js"
   },
   "scripts": {
     "clean": "rimraf dist",
