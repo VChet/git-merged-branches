@@ -6,10 +6,6 @@ build({
   banner: { js: "#!/usr/bin/env node" },
   bundle: true,
   platform: "node",
-  format: "esm"
-})
-  .then(() => {
-    console.info("Build complete.");
-    process.exit(0);
-  })
-  .catch(() => process.exit(1));
+  format: "esm",
+  logLevel: "info"
+}).catch(() => process.exit(1));
