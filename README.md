@@ -1,22 +1,32 @@
-# git-merged-branches CLI
+# git-merged-branches
 
-`git-merged-branches` is a simple command-line utility that allows you to view all branches that have been merged into a selected base branch, such as master.
+[![npm version](https://img.shields.io/npm/v/git-merged-branches)](https://www.npmjs.com/package/git-merged-branches)
+[![build](https://github.com/VChet/git-merged-branches/actions/workflows/build.yml/badge.svg)](https://github.com/VChet/git-merged-branches/actions/workflows/build.yml)
+
+**git-merged-branches` is a command-line utility to view branches merged into a selected base branch (e.g., master or main).**
+
+- CLI usage
+- customizable via `package.json`
 
 ## Installation
 
-To install `git-merged-branches` globally, use the following command:
+Install globally to use `git-merged-branches` or the shorter version `gmb`:
 
 ```bash
 npm install --global git-merged-branches
 ```
 
+Or use it without installation via [npx](https://docs.npmjs.com/cli/v7/commands/npx):
+
+```bash
+npx git-merged-branches
+```
+
 ## Usage
 
-After installation, you can use the `git-merged-branches` command in your terminal. By default, it will show a list of branches that have been merged into the base branch (e.g., master or main).
+By default, the command shows merged branches into the base branch (**master** or **main**). If neither exists, it will notify you.
 
-The utility checks for the default base branch (**master** or **main**), and if neither exists, it will notify you.
-
-When you run the `git-merged-branches` command, it will show a list of branches that have been merged into the base branch:
+Example output:
 
 ```bash
 $ git-merged-branches
@@ -26,26 +36,23 @@ bugfix/fix-crash-on-start
 hotfix/urgent-fix
 ```
 
-Also, you may use `gmb` as an alias for `git-merged-branches`.
-
 ## Configuration
 
-You can configure the behavior of the `git-merged-branches` command by adding a `git-merged-branches` object to your `package.json`.
-The configuration allows you to specify:
+You can configure the utility in your `package.json` under `git-merged-branches`. This allows you to set:
 
-- **issueUrlFormat**: The base URL for your issue tracker. Must be a valid URL. If it's not, the utility will warn you.
-- **issueUrlPrefix**: The prefix used to identify issues in branch names. Must consist of letters. If it's not, the utility will warn you.
+- **issueUrlFormat**: Base URL for your issue tracker (must be a valid URL).
+- **issueUrlPrefix**: Prefix for issue identifiers in branch names (must be letters).
 
-Here is an example of how to add the configuration:
+Example configuration:
 
 ```json
 "git-merged-branches": {
   "issueUrlFormat": "https://your-jira-instance.net",
-  "issueUrlPrefix": "TOKEN-"
+  "issueUrlPrefix": "TOKEN"
 }
 ```
 
-With this configuration, `git-merged-branches` will detect branches with the prefix **TOKEN** and generate links to the issue tracker:
+With this setup, `git-merged-branches` will generate links for branches with such tokens in their name:
 
 ```bash
 $ git-merged-branches
@@ -56,33 +63,39 @@ fix/EXTERNAL-391
 hotfix
 ```
 
-If the configuration is invalid, `git-merged-branches` will display warnings and skip formatting the issue URLs.
+If the configuration is invalid, warnings will be shown and the utility will skip formatting URLs.
 
 ## Development
 
-- Clone the repository:
+To contribute or test locally:
 
-  ```bash
-  git clone https://github.com/VChet/git-merged-branches.git
-  cd git-merged-branches
-  ```
+1. Clone the repository:
 
-- Install dependencies:
+    ```bash
+    git clone https://github.com/VChet/git-merged-branches.git
+    cd git-merged-branches
+    ```
 
-  ```bash
-  npm install
-  ```
+1. Install dependencies:
 
-- Build:
+    ```bash
+    npm install
+    ```
 
-  ```bash
-  npm run build
-  ```
+1. Build the project:
 
-- Link it locally for testing:
+    ```bash
+    npm run build
+    ```
 
-  ```bash
-  npm link
-  ```
+1. Link it locally for testing:
+
+    ```bash
+    npm link
+    ```
 
 Now you can run `git-merged-branches` on your local machine.
+
+## Contributing
+
+If you have any ideas, bug reports, or feature requests, feel free to [contribute](https://github.com/VChet/git-merged-branches/pulls) or report [issues](https://github.com/VChet/git-merged-branches/issues).
