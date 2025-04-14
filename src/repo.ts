@@ -27,11 +27,16 @@ export function getDefaultTargetBranch(): string | null {
 }
 
 export function getMergedBranches(targetBranch: string): string[] {
+  const baseCommit = execSync(`git rev-parse ${targetBranch}`, { encoding: "utf-8" }).trim();
   const output = execSync(`git branch --merged ${targetBranch}`, { encoding: "utf-8" });
   return output.split("\n").reduce((acc: string[], line) => {
-    const branch = line.trim();
-    if (branch && !branch.includes(targetBranch)) { return [...acc, branch]; }
-    return acc
+    // Ignore empty lines
+    const branch = line.replace('*', '').trim();
+    if (!branch) { return acc; }
+    // Ignore branches on the base commit
+    const branchCommit = execSync(`git rev-parse ${branch}`, { encoding: "utf-8" }).trim();
+    if (branchCommit === baseCommit) { return acc; }
+    return [...acc, branch];
   }, []);
 }
 
