@@ -20,6 +20,7 @@
     }
   },
   "hooks": {
+    "before:init": ["npm run lint:all", "npm run test"],
     "after:bump": "npm run build"
   }
 }
