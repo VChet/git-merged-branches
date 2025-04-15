@@ -2,7 +2,7 @@
   "name": "git-merged-branches",
   "description": "CLI tool to list all Git branches merged into a base branch with issue link formatting",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "author": {
     "name": "VChet",
