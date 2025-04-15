@@ -47,7 +47,7 @@ Example configuration:
 
 ```json
 "git-merged-branches": {
-  "issueUrlFormat": "https://your-jira-instance.net",
+  "issueUrlFormat": "https://your-jira-instance.net/browse",
   "issueUrlPrefix": "TOKEN"
 }
 ```
