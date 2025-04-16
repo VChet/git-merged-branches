@@ -6,7 +6,7 @@ export function isGitRepo(): boolean {
   try {
     execSync("git rev-parse --is-inside-work-tree", { stdio: "ignore" });
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 }
@@ -42,7 +42,7 @@ export function getMergedBranches(targetBranch: string): string[] {
 
 export interface GitMergedConfig {
   issueUrlFormat?: string;
-  issueUrlPrefix?: string;
+  issueUrlPrefix?: string[];
 };
 
 export function getConfig(): GitMergedConfig {
@@ -50,7 +50,7 @@ export function getConfig(): GitMergedConfig {
     const pkgPath = join(process.cwd(), "package.json");
     const pkg = JSON.parse(readFileSync(pkgPath, "utf-8"));
     return pkg["git-merged-branches"] || {};
-  } catch (error) {
+  } catch {
     return {};
   }
 }
