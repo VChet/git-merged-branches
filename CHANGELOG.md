@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.0](https://github.com/VChet/git-merged-branches/compare/0.1.2...0.2.0) (2025-04-16)
+
+### Features
+
+* add support for multiple 'issueUrlPrefix', more fine-grained 'issueUrlFormat' ([37b3b74](https://github.com/VChet/git-merged-branches/commit/37b3b74e97f4b5e45a3c3b14eabb403a3fd63d54))
+
 ## [0.1.2](https://github.com/VChet/git-merged-branches/compare/0.1.1...0.1.2) (2025-04-15)
 
 ### Features
