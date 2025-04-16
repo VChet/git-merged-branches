@@ -41,14 +41,14 @@ hotfix/urgent-fix
 You can configure the utility in your `package.json` under `git-merged-branches`. This allows you to set:
 
 - **issueUrlFormat**: Base URL for your issue tracker (must be a valid URL).
-- **issueUrlPrefix**: Prefix for issue identifiers in branch names (must be letters).
+- **issueUrlPrefix**: Array of prefixes for issue identifiers in branch names.
 
 Example configuration:
 
 ```json
 "git-merged-branches": {
-  "issueUrlFormat": "https://your-jira-instance.net/browse",
-  "issueUrlPrefix": "TOKEN"
+  "issueUrlFormat": "https://your-jira-instance.net/browse/{{prefix}}{{id}}",
+  "issueUrlPrefix": ["TOKEN-", "PROJECT-"]
 }
 ```
 
@@ -57,8 +57,8 @@ With this setup, `git-merged-branches` will generate links for branches with suc
 ```bash
 $ git-merged-branches
 Branches merged into 'master':
-TOKEN-800_new-feature <https://your-jira-instance.net/TOKEN-800>
-fix/TOKEN-123_some-fix <https://your-jira-instance.net/TOKEN-123>
+TOKEN-800_new-feature <https://your-jira-instance.net/browse/TOKEN-800>
+fix/TOKEN-123_some-fix <https://your-jira-instance.net/browse/TOKEN-123>
 fix/EXTERNAL-391
 hotfix
 ```
