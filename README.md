@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/git-merged-branches)](https://www.npmjs.com/package/git-merged-branches)
 [![build](https://github.com/VChet/git-merged-branches/actions/workflows/build.yml/badge.svg)](https://github.com/VChet/git-merged-branches/actions/workflows/build.yml)
 
-**git-merged-branches` is a command-line utility to view branches merged into a selected base branch (e.g., master or main).**
+**git-merged-branches is a command-line utility to view branches merged into a selected base branch (e.g., master or main).**
 
 - CLI usage
 - customizable via `package.json`
