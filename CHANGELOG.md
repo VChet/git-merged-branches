@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1](https://github.com/VChet/git-merged-branches/compare/0.2.0...0.2.1) (2025-04-22)
+
+### Features
+
+* **output:** suggest git delete commands for merged branches ([498cb0c](https://github.com/VChet/git-merged-branches/commit/498cb0c5b90e351e3eb6064c9bad933ec53d20ca))
+
 ## [0.2.0](https://github.com/VChet/git-merged-branches/compare/0.1.2...0.2.0) (2025-04-16)
 
 ### Features

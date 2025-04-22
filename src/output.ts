@@ -38,6 +38,9 @@ export function outputMergedBranches(branches: string[], targetBranch: string, c
   if (branches.length) {
     console.info(`Branches merged into '${targetBranch}':`)
     console.info(formatTaskBranches(branches, config).join("\n"));
+
+    console.info("\nRun the following to delete branches locally and remotely:");
+    console.info(`git branch --delete ${branches.join(" ")} && git push origin --delete ${branches.join(" ")}`);
   } else {
     console.info(`No branches merged into '${targetBranch}'.`);
   }
