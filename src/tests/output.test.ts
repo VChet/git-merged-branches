@@ -87,11 +87,15 @@ describe("outputMergedBranches", () => {
     const remoteDelete = `git push origin --delete ${branches.join(" ")}`;
     expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches locally and remotely:");
     expect(infoSpy).toHaveBeenNthCalledWith(4, `${localDelete} && ${remoteDelete}`);
+    expect(infoSpy).toHaveBeenCalledTimes(4);
+    expect(warnSpy).not.toHaveBeenCalled();
   });
 
   it("should log a message when no branches are merged", () => {
     outputMergedBranches([], "master", DEFAULT_CONFIG);
     expect(infoSpy).toHaveBeenCalledWith("No branches merged into 'master'.");
+    expect(infoSpy).toHaveBeenCalledTimes(1);
+    expect(warnSpy).not.toHaveBeenCalled();
   });
 
   it("should warn when issueUrlFormat is not a valid URL", () => {
@@ -99,6 +103,8 @@ describe("outputMergedBranches", () => {
     const config = { ...DEFAULT_CONFIG, issueUrlFormat: "invalid-url" };
 
     outputMergedBranches(branches, "master", config);
+    expect(infoSpy).toHaveBeenCalledTimes(4);
     expect(warnSpy).toHaveBeenCalledWith("'invalid-url' is not a valid URL. Skipped formatting.");
+    expect(warnSpy).toHaveBeenCalledTimes(1);
   });
 });
