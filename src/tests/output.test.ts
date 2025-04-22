@@ -82,6 +82,11 @@ describe("outputMergedBranches", () => {
       "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
     ]
     expect(infoSpy).toHaveBeenNthCalledWith(2, branchOutput.join("\n"));
+
+    const localDelete = `git branch --delete ${branches.join(" ")}`;
+    const remoteDelete = `git push origin --delete ${branches.join(" ")}`;
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches locally and remotely:");
+    expect(infoSpy).toHaveBeenNthCalledWith(4, `${localDelete} && ${remoteDelete}`);
   });
 
   it("should log a message when no branches are merged", () => {
