@@ -36,13 +36,13 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.1",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.24",
     "dotenv-cli": "^8.0.0",
-    "esbuild": "^0.25.2",
-    "eslint": "^9.25.1",
+    "esbuild": "^0.25.5",
+    "eslint": "^9.27.0",
     "neostandard": "^0.12.1",
-    "release-it": "^19.0.1",
+    "release-it": "^19.0.2",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.2"
+    "vitest": "^3.1.4"
   }
 }
