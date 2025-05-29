@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.2](https://github.com/VChet/git-merged-branches/compare/0.2.1...0.2.2) (2025-05-29)
+
+### Features
+
+* **repo:** handle detached HEAD state ([e659417](https://github.com/VChet/git-merged-branches/commit/e6594175361f396a7473121511d1a806e85d26ce))
+
 ## [0.2.1](https://github.com/VChet/git-merged-branches/compare/0.2.0...0.2.1) (2025-04-22)
 
 ### Features

@@ -24,15 +24,16 @@ npx git-merged-branches
 
 ## Usage
 
-By default, the command shows merged branches into the base branch (**master** or **main**). If neither exists, it will notify you.
+By default, the command shows merged branches into the base branch (**master** or **main**).
+If neither exists, it will notify you.
 
 Example output:
 
 ```bash
 $ git-merged-branches
 Branches merged into 'master':
-feature/add-new-feature
 bugfix/fix-crash-on-start
+feature/add-new-feature
 hotfix/urgent-fix
 ```
 
@@ -57,10 +58,10 @@ With this setup, `git-merged-branches` will generate links for branches with suc
 ```bash
 $ git-merged-branches
 Branches merged into 'master':
-TOKEN-800_new-feature <https://your-jira-instance.net/browse/TOKEN-800>
-fix/TOKEN-123_some-fix <https://your-jira-instance.net/browse/TOKEN-123>
 fix/EXTERNAL-391
+fix/TOKEN-123_some-fix <https://your-jira-instance.net/browse/TOKEN-123>
 hotfix
+TOKEN-800_new-feature <https://your-jira-instance.net/browse/TOKEN-800>
 ```
 
 If the configuration is invalid, warnings will be shown and the utility will skip formatting URLs.
@@ -98,4 +99,6 @@ Now you can run `git-merged-branches` on your local machine.
 
 ## Contributing
 
-If you have any ideas, bug reports, or feature requests, feel free to [contribute](https://github.com/VChet/git-merged-branches/pulls) or report [issues](https://github.com/VChet/git-merged-branches/issues).
+If you have any ideas, bug reports, or feature requests,
+feel free to [contribute](https://github.com/VChet/git-merged-branches/pulls)
+or report [issues](https://github.com/VChet/git-merged-branches/issues).

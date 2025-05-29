@@ -11,7 +11,16 @@ export function isGitRepo(): boolean {
   }
 }
 
-export function isBranchExists(branch: string): boolean {
+export function isDetachedHead(): boolean {
+  try {
+    const output = execSync("git symbolic-ref --quiet --short HEAD", { encoding: "utf-8" }).trim();
+    return output === "";
+  } catch {
+    return true;
+  }
+}
+
+function isBranchExists(branch: string): boolean {
   try {
     execSync(`git show-ref --verify --quiet refs/heads/${branch}`);
     return true;
