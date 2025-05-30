@@ -1,6 +1,7 @@
 import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { logError } from "./helpers";
 
 export function isGitRepo(): boolean {
   try {
@@ -49,6 +50,20 @@ export function getMergedBranches(targetBranch: string): string[] {
   }, []);
 }
 
+export function fetchRemoteBranches(remote = "origin"): string[] {
+  try {
+    const output = execSync(`git ls-remote --heads ${remote}`, { encoding: "utf-8" });
+    return output
+      .split("\n")
+      .map(line => line.split("\t")[1])
+      .filter(ref => ref?.startsWith("refs/heads/"))
+      .map(ref => ref.replace("refs/heads/", ""));
+  } catch (error) {
+    logError(`Could not fetch remote branches from '${remote}'`, error);
+    return [];
+  }
+}
+
 export interface GitMergedConfig {
   issueUrlFormat?: string;
   issueUrlPrefix?: string[];
@@ -59,7 +74,8 @@ export function getConfig(): GitMergedConfig {
     const pkgPath = join(process.cwd(), "package.json");
     const pkg = JSON.parse(readFileSync(pkgPath, "utf-8"));
     return pkg["git-merged-branches"] || {};
-  } catch {
+  } catch (error) {
+    logError("Could not read package.json", error);
     return {};
   }
 }
