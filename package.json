@@ -32,7 +32,9 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
     "test": "vitest --run",
-    "release": "dotenv release-it"
+    "release:patch": "dotenv release-it patch",
+    "release:minor": "dotenv release-it minor",
+    "release:major": "dotenv release-it major"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.1",
