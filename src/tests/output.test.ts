@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { formatTaskBranches, outputMergedBranches } from "../output";
 import { GitMergedConfig } from "../repo";
+import * as repoMethods from "../repo";
 
 const DEFAULT_CONFIG: GitMergedConfig = {
   issueUrlFormat: "https://test-instance.org/browse/{{prefix}}{{id}}",
@@ -72,7 +73,7 @@ describe("outputMergedBranches", () => {
     warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
   });
 
-  it("should log the correct branches when there are merged branches", () => {
+  it("should log the correct branches when there are local merged branches", () => {
     const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
 
     outputMergedBranches(branches, "master", DEFAULT_CONFIG);
@@ -84,10 +85,30 @@ describe("outputMergedBranches", () => {
     expect(infoSpy).toHaveBeenNthCalledWith(2, branchOutput.join("\n"));
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
-    const remoteDelete = `git push origin --delete ${branches.join(" ")}`;
-    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches locally and remotely:");
-    expect(infoSpy).toHaveBeenNthCalledWith(4, `${localDelete} && ${remoteDelete}`);
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches:");
+    expect(infoSpy).toHaveBeenNthCalledWith(4, `locally:\n  ${localDelete}`);
     expect(infoSpy).toHaveBeenCalledTimes(4);
+    expect(warnSpy).not.toHaveBeenCalled();
+  });
+
+  it("should log the correct branches when there are remote merged branches", () => {
+    const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
+    vi.spyOn(repoMethods, "fetchRemoteBranches").mockReturnValue(branches);
+
+    outputMergedBranches(branches, "master", DEFAULT_CONFIG);
+    expect(infoSpy).toHaveBeenNthCalledWith(1, "Branches merged into 'master':");
+    const branchOutput = [
+      "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
+      "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
+    ]
+    expect(infoSpy).toHaveBeenNthCalledWith(2, branchOutput.join("\n"));
+
+    const localDelete = `git branch --delete ${branches.join(" ")}`;
+    const remoteDelete = `git push origin --delete ${branches.join(" ")}`;
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches:");
+    expect(infoSpy).toHaveBeenNthCalledWith(4, `locally:\n  ${localDelete}`);
+    expect(infoSpy).toHaveBeenNthCalledWith(5, `remotely:\n  ${remoteDelete}`);
+    expect(infoSpy).toHaveBeenCalledTimes(5);
     expect(warnSpy).not.toHaveBeenCalled();
   });
 

@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/git-merged-branches)](https://www.npmjs.com/package/git-merged-branches)
 [![build](https://github.com/VChet/git-merged-branches/actions/workflows/build.yml/badge.svg)](https://github.com/VChet/git-merged-branches/actions/workflows/build.yml)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/VChet/git-merged-branches)
 
 **git-merged-branches is a command-line utility to view branches merged into a selected base branch (e.g., master or main).**
 
@@ -65,6 +66,10 @@ TOKEN-800_new-feature <https://your-jira-instance.net/browse/TOKEN-800>
 ```
 
 If the configuration is invalid, warnings will be shown and the utility will skip formatting URLs.
+
+## Documentation
+
+- [DeepWiki](https://deepwiki.com/VChet/git-merged-branches)
 
 ## Development
 

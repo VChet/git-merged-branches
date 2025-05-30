@@ -1,4 +1,4 @@
-import { GitMergedConfig } from "./repo.js";
+import { fetchRemoteBranches, GitMergedConfig } from "./repo.js";
 import { isValidURL } from "./validate.js";
 
 function formatSingleBranch(
@@ -35,13 +35,17 @@ export function formatTaskBranches(branches: string[], { issueUrlFormat, issueUr
 }
 
 export function outputMergedBranches(branches: string[], targetBranch: string, config: GitMergedConfig): void {
-  if (branches.length) {
-    console.info(`Branches merged into '${targetBranch}':`)
-    console.info(formatTaskBranches(branches, config).join("\n"));
-
-    console.info("\nRun the following to delete branches locally and remotely:");
-    console.info(`git branch --delete ${branches.join(" ")} && git push origin --delete ${branches.join(" ")}`);
-  } else {
-    console.info(`No branches merged into '${targetBranch}'.`);
+  if (!branches.length) {
+    return console.info(`No branches merged into '${targetBranch}'.`);
   }
+
+  console.info(`Branches merged into '${targetBranch}':`)
+  console.info(formatTaskBranches(branches, config).join("\n"));
+
+  const remoteBranches = fetchRemoteBranches("origin");
+  const remoteMerged = branches.filter(branch => remoteBranches.includes(branch));
+
+  console.info("\nRun the following to delete branches:");
+  console.info(`locally:\n  git branch --delete ${branches.join(" ")}`);
+  if (remoteMerged.length) { console.info(`remotely:\n  git push origin --delete ${remoteMerged.join(" ")}`); }
 }

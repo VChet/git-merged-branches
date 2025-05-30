@@ -1,16 +1,17 @@
 {
-  "$schema": "https://unpkg.com/release-it@18/schema/release-it.json",
+  "$schema": "https://unpkg.com/release-it/schema/release-it.json",
   "git": {
     "commitMessage": "chore(release): ${version}",
     "tagName": "${version}",
     "requireCleanWorkingDir": true
   },
   "npm": {
-    "publish": true,
+    "publish": false,
     "skipChecks": false
   },
   "github": {
     "release": true,
+    "draft": true,
     "releaseName": "${version}"
   },
   "plugins": {
@@ -21,6 +22,7 @@
   },
   "hooks": {
     "before:init": ["npm run lint:all", "npm run test"],
-    "after:bump": "npm run build"
+    "after:bump": "npm run build",
+    "after:release": "npm publish"
   }
 }

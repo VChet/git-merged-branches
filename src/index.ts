@@ -1,6 +1,7 @@
 import process from "node:process";
 import { getConfig, getDefaultTargetBranch, getMergedBranches, isDetachedHead, isGitRepo } from "./repo.js";
 import { outputMergedBranches } from "./output.js";
+import { logError } from "./helpers.js";
 
 function main(): void {
   if (!isGitRepo()) {
@@ -21,7 +22,7 @@ function main(): void {
     const mergedBranches = getMergedBranches(targetBranch);
     outputMergedBranches(mergedBranches, targetBranch, getConfig());
   } catch (error) {
-    console.error("Error executing 'git-merged-branches' command`:", error);
+    logError("Error executing 'git-merged-branches' command", error);
     process.exit(1);
   }
 }
