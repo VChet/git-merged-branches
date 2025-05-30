@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.3](https://github.com/VChet/git-merged-branches/compare/0.2.2...0.2.3) (2025-05-30)
+
+### Features
+
+* **repo:** only suggest remote delete if branch exists ([1418a4a](https://github.com/VChet/git-merged-branches/commit/1418a4a2cd6f9c2a03ef13529563c7fc30aa5109))
+
 ## [0.2.2](https://github.com/VChet/git-merged-branches/compare/0.2.1...0.2.2) (2025-05-29)
 
 ### Features
