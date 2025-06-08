@@ -1,6 +1,7 @@
 {
   "name": "git-merged-branches",
   "description": "CLI tool to list all Git branches merged into a base branch with issue link formatting",
+  "keywords": ["git", "cli", "branch", "issue-tracker"],
   "type": "module",
   "version": "0.2.3",
   "license": "MIT",
