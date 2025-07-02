@@ -1,3 +1,4 @@
+import { pluralize } from "./helpers.js";
 import { fetchRemoteBranches, GitMergedConfig } from "./repo.js";
 import { isValidURL } from "./validate.js";
 
@@ -9,11 +10,9 @@ function formatSingleBranch(
   for (const prefix of issueUrlPrefix) {
     const prefixRegex = new RegExp(`\\b${prefix}(\\d+)`, "i");
     const match = branch.match(prefixRegex);
-
     if (!match) { continue; }
 
-    const [_fullToken, id] = match;
-    const url = issueUrlFormat.replace("{{prefix}}", prefix).replace("{{id}}", id);
+    const url = issueUrlFormat.replace("{{prefix}}", prefix).replace("{{id}}", match[1]);
     return `${branch} <${url}>`;
   }
   return branch;
@@ -39,7 +38,7 @@ export function outputMergedBranches(branches: string[], targetBranch: string, c
     return console.info(`No branches merged into '${targetBranch}'.`);
   }
 
-  console.info(`${branches.length} branches merged into '${targetBranch}':`)
+  console.info(`${pluralize(branches.length, ["branch", "branches"])} merged into '${targetBranch}':`);
   console.info(formatTaskBranches(branches, config).join("\n"));
 
   const remoteBranches = fetchRemoteBranches("origin");

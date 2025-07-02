@@ -41,7 +41,7 @@ export function getMergedBranches(targetBranch: string): string[] {
   const output = execSync(`git branch --merged ${targetBranch}`, { encoding: "utf-8" });
   return output.split("\n").reduce((acc: string[], line) => {
     // Ignore empty lines
-    const branch = line.replace('*', '').trim();
+    const branch = line.replace("*", "").trim();
     if (!branch) { return acc; }
     // Ignore branches on the base commit
     const branchCommit = execSync(`git rev-parse ${branch}`, { encoding: "utf-8" }).trim();
@@ -67,7 +67,7 @@ export function fetchRemoteBranches(remote = "origin"): string[] {
 export interface GitMergedConfig {
   issueUrlFormat?: string;
   issueUrlPrefix?: string[];
-};
+}
 
 export function getConfig(): GitMergedConfig {
   try {
