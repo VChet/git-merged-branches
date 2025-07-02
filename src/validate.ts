@@ -1,8 +1,8 @@
-export function isValidURL(url?: string): boolean {
-  if (!url) return false;
+export function isValidURL(payload?: string): boolean {
+  if (!payload) return false;
   try {
-    new URL(url);
-    return true;
+    const url = new URL(payload);
+    return url.protocol === "http:" || url.protocol === "https:";
   } catch {
     return false;
   }

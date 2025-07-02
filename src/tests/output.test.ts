@@ -13,8 +13,8 @@ describe("formatTaskBranches", () => {
     const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
     const result = formatTaskBranches(branches, DEFAULT_CONFIG);
     expect(result).toEqual([
-      'feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>',
-      'fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>'
+      "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
+      "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
     ]);
   });
 
@@ -81,7 +81,7 @@ describe("outputMergedBranches", () => {
     const branchOutput = [
       "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
       "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
-    ]
+    ];
     expect(infoSpy).toHaveBeenNthCalledWith(2, branchOutput.join("\n"));
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
@@ -100,7 +100,7 @@ describe("outputMergedBranches", () => {
     const branchOutput = [
       "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
       "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
-    ]
+    ];
     expect(infoSpy).toHaveBeenNthCalledWith(2, branchOutput.join("\n"));
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
@@ -126,7 +126,7 @@ describe("outputMergedBranches", () => {
     expect(infoSpy).toHaveBeenNthCalledWith(4, `locally:\n  ${localDelete}`);
     expect(infoSpy).toHaveBeenCalledTimes(4);
     expect(warnSpy).not.toHaveBeenCalled();
-  })
+  });
 
   it("should log a message when no branches are merged", () => {
     outputMergedBranches([], "master", DEFAULT_CONFIG);
