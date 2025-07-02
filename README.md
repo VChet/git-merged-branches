@@ -33,7 +33,7 @@ Example output:
 
 ```bash
 $ git-merged-branches
-Branches merged into 'master':
+3 branches merged into 'master':
 bugfix/fix-crash-on-start
 feature/add-new-feature
 hotfix/urgent-fix
@@ -59,7 +59,7 @@ With this setup, `git-merged-branches` will generate links for branches with suc
 
 ```bash
 $ git-merged-branches
-Branches merged into 'master':
+4 branches merged into 'master':
 fix/EXTERNAL-391
 fix/TOKEN-123_some-fix <https://your-jira-instance.net/browse/TOKEN-123>
 hotfix

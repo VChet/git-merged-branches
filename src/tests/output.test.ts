@@ -77,7 +77,7 @@ describe("outputMergedBranches", () => {
     const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
 
     outputMergedBranches(branches, "master", DEFAULT_CONFIG);
-    expect(infoSpy).toHaveBeenNthCalledWith(1, "Branches merged into 'master':");
+    expect(infoSpy).toHaveBeenNthCalledWith(1, "2 branches merged into 'master':");
     const branchOutput = [
       "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
       "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
@@ -96,7 +96,7 @@ describe("outputMergedBranches", () => {
     vi.spyOn(repoMethods, "fetchRemoteBranches").mockReturnValue(branches);
 
     outputMergedBranches(branches, "master", DEFAULT_CONFIG);
-    expect(infoSpy).toHaveBeenNthCalledWith(1, "Branches merged into 'master':");
+    expect(infoSpy).toHaveBeenNthCalledWith(1, "2 branches merged into 'master':");
     const branchOutput = [
       "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
       "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
