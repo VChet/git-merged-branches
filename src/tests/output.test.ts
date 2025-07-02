@@ -93,7 +93,7 @@ describe("outputMergedBranches", () => {
 
   it("should log the correct branches when there are remote merged branches", () => {
     const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
-    vi.spyOn(repoMethods, "fetchRemoteBranches").mockReturnValue(branches);
+    const spy = vi.spyOn(repoMethods, "fetchRemoteBranches").mockReturnValue(branches);
 
     outputMergedBranches(branches, "master", DEFAULT_CONFIG);
     expect(infoSpy).toHaveBeenNthCalledWith(1, "2 branches merged into 'master':");
@@ -110,7 +110,23 @@ describe("outputMergedBranches", () => {
     expect(infoSpy).toHaveBeenNthCalledWith(5, `remotely:\n  ${remoteDelete}`);
     expect(infoSpy).toHaveBeenCalledTimes(5);
     expect(warnSpy).not.toHaveBeenCalled();
+
+    spy.mockRestore();
   });
+
+  it("should log the correct messages when there is single local merged branch", () => {
+    const branches = ["feat/TOKEN-800_new-feature"];
+
+    outputMergedBranches(branches, "master", DEFAULT_CONFIG);
+    expect(infoSpy).toHaveBeenNthCalledWith(1, "1 branch merged into 'master':");
+    expect(infoSpy).toHaveBeenNthCalledWith(2, "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>");
+
+    const localDelete = `git branch --delete ${branches.join(" ")}`;
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches:");
+    expect(infoSpy).toHaveBeenNthCalledWith(4, `locally:\n  ${localDelete}`);
+    expect(infoSpy).toHaveBeenCalledTimes(4);
+    expect(warnSpy).not.toHaveBeenCalled();
+  })
 
   it("should log a message when no branches are merged", () => {
     outputMergedBranches([], "master", DEFAULT_CONFIG);

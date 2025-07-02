@@ -1,3 +1,4 @@
+import { pluralize } from "./helpers.js";
 import { fetchRemoteBranches, GitMergedConfig } from "./repo.js";
 import { isValidURL } from "./validate.js";
 
@@ -39,7 +40,7 @@ export function outputMergedBranches(branches: string[], targetBranch: string, c
     return console.info(`No branches merged into '${targetBranch}'.`);
   }
 
-  console.info(`${branches.length} branches merged into '${targetBranch}':`)
+  console.info(`${pluralize(branches.length, ["branch", "branches"])} merged into '${targetBranch}':`)
   console.info(formatTaskBranches(branches, config).join("\n"));
 
   const remoteBranches = fetchRemoteBranches("origin");
