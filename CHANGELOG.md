@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.4](https://github.com/VChet/git-merged-branches/compare/0.2.3...0.2.4) (2025-07-02)
+
+### Features
+
+* **output:** display number of merged branches ([c425a94](https://github.com/VChet/git-merged-branches/commit/c425a9403494fdeb8be31e8423cd7f394d819050))
+
+### Reverts
+
+* Revert "ci(release-it): publish package in the end" ([d252e72](https://github.com/VChet/git-merged-branches/commit/d252e721168b538939c2ef4d36bfcb5b713bca77))
+
 ## [0.2.3](https://github.com/VChet/git-merged-branches/compare/0.2.2...0.2.3) (2025-05-30)
 
 ### Features
