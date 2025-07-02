@@ -6,7 +6,7 @@
     "requireCleanWorkingDir": true
   },
   "npm": {
-    "publish": false,
+    "publish": true,
     "skipChecks": false
   },
   "github": {
@@ -22,7 +22,6 @@
   },
   "hooks": {
     "before:init": ["npm run lint:all", "npm run test"],
-    "after:bump": "npm run build",
-    "after:release": "npm publish"
+    "after:bump": "npm run build"
   }
 }

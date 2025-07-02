@@ -1,8 +1,9 @@
 # git-merged-branches
 
-[![npm version](https://img.shields.io/npm/v/git-merged-branches)](https://www.npmjs.com/package/git-merged-branches)
-[![build](https://github.com/VChet/git-merged-branches/actions/workflows/build.yml/badge.svg)](https://github.com/VChet/git-merged-branches/actions/workflows/build.yml)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/VChet/git-merged-branches)
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![build][build-src]][build-href]
+[![ask DeepWiki][deep-wiki-src]][deep-wiki-href]
 
 **git-merged-branches is a command-line utility to view branches merged into a selected base branch (e.g., master or main).**
 
@@ -32,7 +33,7 @@ Example output:
 
 ```bash
 $ git-merged-branches
-Branches merged into 'master':
+3 branches merged into 'master':
 bugfix/fix-crash-on-start
 feature/add-new-feature
 hotfix/urgent-fix
@@ -58,7 +59,7 @@ With this setup, `git-merged-branches` will generate links for branches with suc
 
 ```bash
 $ git-merged-branches
-Branches merged into 'master':
+4 branches merged into 'master':
 fix/EXTERNAL-391
 fix/TOKEN-123_some-fix <https://your-jira-instance.net/browse/TOKEN-123>
 hotfix
@@ -107,3 +108,13 @@ Now you can run `git-merged-branches` on your local machine.
 If you have any ideas, bug reports, or feature requests,
 feel free to [contribute](https://github.com/VChet/git-merged-branches/pulls)
 or report [issues](https://github.com/VChet/git-merged-branches/issues).
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/git-merged-branches
+[npm-version-href]: https://npmjs.com/package/git-merged-branches
+[npm-downloads-src]: https://img.shields.io/npm/dm/git-merged-branches
+[npm-downloads-href]: https://npmjs.com/package/git-merged-branches
+[build-src]: https://github.com/VChet/git-merged-branches/actions/workflows/build.yml/badge.svg
+[build-href]: https://github.com/VChet/git-merged-branches/actions/workflows/build.yml
+[deep-wiki-src]: https://deepwiki.com/badge.svg
+[deep-wiki-href]: https://deepwiki.com/VChet/git-merged-branches
