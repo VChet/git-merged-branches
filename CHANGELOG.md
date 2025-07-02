@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.5](https://github.com/VChet/git-merged-branches/compare/0.2.4...0.2.5) (2025-07-02)
+
+### Bug Fixes
+
+* **output:** pluralize number of merged branches ([e28b0d7](https://github.com/VChet/git-merged-branches/commit/e28b0d7dec5d6ff3213524b3a6864e08033bd07d))
+
 ## [0.2.4](https://github.com/VChet/git-merged-branches/compare/0.2.3...0.2.4) (2025-07-02)
 
 ### Features
