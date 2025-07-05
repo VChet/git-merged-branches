@@ -1,7 +1,6 @@
-import { defineConfig } from "eslint/config";
 import neostandard from "neostandard";
 
-export default defineConfig([
+export default [
   ...neostandard({
     ts: true,
     noJsx: true,
@@ -16,4 +15,4 @@ export default defineConfig([
       "@stylistic/space-before-function-paren": ["error", "never"]
     }
   }
-]);
+];

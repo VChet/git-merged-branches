@@ -20,7 +20,8 @@ function main(): void {
   }
   try {
     const mergedBranches = getMergedBranches(targetBranch);
-    outputMergedBranches(mergedBranches, targetBranch, getConfig());
+    const deleteBranches = process.argv.includes("--delete");
+    outputMergedBranches(mergedBranches, targetBranch, getConfig(), { deleteBranches });
   } catch (error) {
     logError("Error executing 'git-merged-branches' command", error);
     process.exit(1);

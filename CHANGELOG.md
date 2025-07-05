@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.6](https://github.com/VChet/git-merged-branches/compare/0.2.5...0.2.6) (2025-07-05)
+
+### Features
+
+* add `--delete` parameter to delete all the merged branches ([0340087](https://github.com/VChet/git-merged-branches/commit/03400876dc4ac970f072920aa2dd6b278e71f2b8))
+
 ## [0.2.5](https://github.com/VChet/git-merged-branches/compare/0.2.4...0.2.5) (2025-07-02)
 
 ### Bug Fixes
