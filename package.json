@@ -48,7 +48,7 @@
     "dotenv-cli": "^8.0.0",
     "esbuild": "^0.25.5",
     "eslint": "^9.30.1",
-    "neostandard": "^0.12.1",
+    "neostandard": "^0.12.2",
     "release-it": "^19.0.3",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
@@ -70,7 +70,8 @@
       "safe-buffer": "npm:@nolyfill/safe-buffer@^1",
       "safer-buffer": "npm:@nolyfill/safer-buffer@^1",
       "string.prototype.matchall": "npm:@nolyfill/string.prototype.matchall@^1",
-      "typedarray": "npm:@nolyfill/typedarray@^1"
+      "typedarray": "npm:@nolyfill/typedarray@^1",
+      "string.prototype.repeat": "npm:@nolyfill/string.prototype.repeat@^1"
     }
   }
 }
