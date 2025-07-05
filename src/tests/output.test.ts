@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { formatTaskBranches, outputMergedBranches } from "../output";
-import { GitMergedConfig } from "../repo";
 import * as repoMethods from "../repo";
+import type { GitMergedConfig } from "../types";
 
 const DEFAULT_CONFIG: GitMergedConfig = {
   issueUrlFormat: "https://test-instance.org/browse/{{prefix}}{{id}}",
@@ -85,7 +85,7 @@ describe("outputMergedBranches", () => {
     expect(infoSpy).toHaveBeenNthCalledWith(2, branchOutput.join("\n"));
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
-    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches:");
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches, or use the --delete option to delete them automatically:");
     expect(infoSpy).toHaveBeenNthCalledWith(4, `locally:\n  ${localDelete}`);
     expect(infoSpy).toHaveBeenCalledTimes(4);
     expect(warnSpy).not.toHaveBeenCalled();
@@ -93,7 +93,7 @@ describe("outputMergedBranches", () => {
 
   it("should log the correct branches when there are remote merged branches", () => {
     const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
-    const spy = vi.spyOn(repoMethods, "fetchRemoteBranches").mockReturnValue(branches);
+    const fetchRemoteMock = vi.spyOn(repoMethods, "fetchRemoteBranches").mockReturnValue(branches);
 
     outputMergedBranches(branches, "master", DEFAULT_CONFIG);
     expect(infoSpy).toHaveBeenNthCalledWith(1, "2 branches merged into 'master':");
@@ -105,13 +105,13 @@ describe("outputMergedBranches", () => {
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
     const remoteDelete = `git push origin --delete ${branches.join(" ")}`;
-    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches:");
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches, or use the --delete option to delete them automatically:");
     expect(infoSpy).toHaveBeenNthCalledWith(4, `locally:\n  ${localDelete}`);
     expect(infoSpy).toHaveBeenNthCalledWith(5, `remotely:\n  ${remoteDelete}`);
     expect(infoSpy).toHaveBeenCalledTimes(5);
     expect(warnSpy).not.toHaveBeenCalled();
 
-    spy.mockRestore();
+    fetchRemoteMock.mockRestore();
   });
 
   it("should log the correct messages when there is single local merged branch", () => {
@@ -122,7 +122,7 @@ describe("outputMergedBranches", () => {
     expect(infoSpy).toHaveBeenNthCalledWith(2, "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>");
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
-    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches:");
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nRun the following to delete branches, or use the --delete option to delete them automatically:");
     expect(infoSpy).toHaveBeenNthCalledWith(4, `locally:\n  ${localDelete}`);
     expect(infoSpy).toHaveBeenCalledTimes(4);
     expect(warnSpy).not.toHaveBeenCalled();
@@ -143,5 +143,25 @@ describe("outputMergedBranches", () => {
     expect(infoSpy).toHaveBeenCalledTimes(4);
     expect(warnSpy).toHaveBeenCalledWith("'invalid-url' is not a valid URL. Skipped formatting.");
     expect(warnSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("should delete branches when --delete option is passed", () => {
+    const deleteLocalMock = vi.spyOn(repoMethods, "deleteLocalBranches").mockImplementation(() => {});
+    const deleteRemoteMock = vi.spyOn(repoMethods, "deleteRemoteBranches").mockImplementation(() => {});
+
+    const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
+    const fetchRemoteMock = vi.spyOn(repoMethods, "fetchRemoteBranches").mockReturnValue(branches);
+
+    outputMergedBranches(branches, "master", DEFAULT_CONFIG, { deleteBranches: true });
+
+    expect(deleteLocalMock).toHaveBeenCalledWith(branches);
+    expect(deleteRemoteMock).toHaveBeenCalledWith(branches);
+    expect(infoSpy).toHaveBeenCalledWith("\nDeleting branches locally...");
+    expect(infoSpy).toHaveBeenCalledWith("\nDeleting branches remotely...");
+    expect(infoSpy).toHaveBeenCalledWith("Branches deleted successfully.");
+
+    deleteLocalMock.mockRestore();
+    deleteRemoteMock.mockRestore();
+    fetchRemoteMock.mockRestore();
   });
 });

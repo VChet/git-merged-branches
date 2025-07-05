@@ -1,6 +1,7 @@
-import { pluralize } from "./helpers.js";
-import { fetchRemoteBranches, GitMergedConfig } from "./repo.js";
+import { logError, pluralize } from "./helpers.js";
+import { deleteLocalBranches, deleteRemoteBranches, fetchRemoteBranches } from "./repo.js";
 import { isValidURL } from "./validate.js";
+import type { GitMergedConfig, GitMergedOptions } from "./types.js";
 
 function formatSingleBranch(
   branch: string,
@@ -33,7 +34,12 @@ export function formatTaskBranches(branches: string[], { issueUrlFormat, issueUr
   return branches.map((branch) => formatSingleBranch(branch, issueUrlFormat, issueUrlPrefix));
 }
 
-export function outputMergedBranches(branches: string[], targetBranch: string, config: GitMergedConfig): void {
+export function outputMergedBranches(
+  branches: string[],
+  targetBranch: string,
+  config: GitMergedConfig,
+  options: GitMergedOptions = {}
+): void {
   if (!branches.length) {
     return console.info(`No branches merged into '${targetBranch}'.`);
   }
@@ -43,8 +49,21 @@ export function outputMergedBranches(branches: string[], targetBranch: string, c
 
   const remoteBranches = fetchRemoteBranches("origin");
   const remoteMerged = branches.filter(branch => remoteBranches.includes(branch));
-
-  console.info("\nRun the following to delete branches:");
-  console.info(`locally:\n  git branch --delete ${branches.join(" ")}`);
-  if (remoteMerged.length) { console.info(`remotely:\n  git push origin --delete ${remoteMerged.join(" ")}`); }
+  if (!options.deleteBranches) {
+    console.info("\nRun the following to delete branches, or use the --delete option to delete them automatically:");
+    console.info(`locally:\n  git branch --delete ${branches.join(" ")}`);
+    if (remoteMerged.length) { console.info(`remotely:\n  git push origin --delete ${remoteMerged.join(" ")}`); }
+  } else {
+    try {
+      console.info("\nDeleting branches locally...");
+      deleteLocalBranches(branches);
+      if (remoteMerged.length) {
+        console.info("\nDeleting branches remotely...");
+        deleteRemoteBranches(remoteMerged);
+      }
+      console.info("Branches deleted successfully.");
+    } catch (error) {
+      logError("Failed to delete branches", error);
+    }
+  }
 }

@@ -2,6 +2,7 @@ import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { logError } from "./helpers";
+import type { GitMergedConfig } from "./types";
 
 export function isGitRepo(): boolean {
   try {
@@ -64,11 +65,6 @@ export function fetchRemoteBranches(remote = "origin"): string[] {
   }
 }
 
-export interface GitMergedConfig {
-  issueUrlFormat?: string;
-  issueUrlPrefix?: string[];
-}
-
 export function getConfig(): GitMergedConfig {
   try {
     const pkgPath = join(process.cwd(), "package.json");
@@ -78,4 +74,12 @@ export function getConfig(): GitMergedConfig {
     logError("Could not read package.json", error);
     return {};
   }
+}
+
+export function deleteLocalBranches(branches: string[]): void {
+  execSync(`git branch --delete ${branches.join(" ")}`, { stdio: "inherit" });
+}
+
+export function deleteRemoteBranches(branches: string[]): void {
+  execSync(`git push origin --delete ${branches.join(" ")}`, { stdio: "inherit" });
 }

@@ -33,10 +33,22 @@ Example output:
 
 ```bash
 $ git-merged-branches
-3 branches merged into 'master':
-bugfix/fix-crash-on-start
+2 branches merged into 'master':
+fix/crash-on-start
+feat/add-new-feature
+```
+
+You can also delete these merged branches with the `--delete` option:
+
+```bash
+$ git-merged-branches --delete
+2 branches merged into 'master':
+fix/crash-on-start
 feature/add-new-feature
-hotfix/urgent-fix
+
+Deleting branches locally...
+Deleting branches remotely...
+Branches deleted successfully.
 ```
 
 ## Configuration
@@ -110,11 +122,11 @@ feel free to [contribute](https://github.com/VChet/git-merged-branches/pulls)
 or report [issues](https://github.com/VChet/git-merged-branches/issues).
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/git-merged-branches
+[npm-version-src]: https://img.shields.io/npm/v/git-merged-branches?style=flat-square
 [npm-version-href]: https://npmjs.com/package/git-merged-branches
-[npm-downloads-src]: https://img.shields.io/npm/dm/git-merged-branches
+[npm-downloads-src]: https://img.shields.io/npm/dm/git-merged-branches?style=flat-square
 [npm-downloads-href]: https://npmjs.com/package/git-merged-branches
-[build-src]: https://github.com/VChet/git-merged-branches/actions/workflows/build.yml/badge.svg
+[build-src]: https://img.shields.io/github/actions/workflow/status/VChet/git-merged-branches/build.yml?style=flat-square
 [build-href]: https://github.com/VChet/git-merged-branches/actions/workflows/build.yml
-[deep-wiki-src]: https://deepwiki.com/badge.svg
+[deep-wiki-src]: https://img.shields.io/badge/ask-DeepWiki-blue?style=flat-square
 [deep-wiki-href]: https://deepwiki.com/VChet/git-merged-branches
