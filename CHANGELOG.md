@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.7](https://github.com/VChet/git-merged-branches/compare/0.2.6...0.2.7) (2025-08-27)
+
+### Bug Fixes
+
+* **output:** update output texts ([16c99da](https://github.com/VChet/git-merged-branches/commit/16c99da8ecce401438bb112434421b175e20c09a))
+
 ## [0.2.6](https://github.com/VChet/git-merged-branches/compare/0.2.5...0.2.6) (2025-07-05)
 
 ### Features

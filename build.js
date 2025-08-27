@@ -1,6 +1,6 @@
 import { build } from "esbuild";
 
-build({
+const config = {
   entryPoints: ["./src/index.ts"],
   outfile: "dist/index.js",
   banner: { js: "#!/usr/bin/env node" },
@@ -8,4 +8,6 @@ build({
   platform: "node",
   format: "esm",
   logLevel: "info"
-}).catch(() => process.exit(1));
+};
+
+build(config).catch(() => process.exit(1));

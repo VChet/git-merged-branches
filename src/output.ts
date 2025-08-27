@@ -1,5 +1,5 @@
-import { logError, pluralize } from "./helpers.js";
-import { deleteLocalBranches, deleteRemoteBranches, fetchRemoteBranches } from "./repo.js";
+import { pluralize } from "./helpers.js";
+import { deleteBranches, fetchRemoteBranches } from "./repo.js";
 import { isValidURL } from "./validate.js";
 import type { GitMergedConfig, GitMergedOptions } from "./types.js";
 
@@ -40,30 +40,26 @@ export function outputMergedBranches(
   config: GitMergedConfig,
   options: GitMergedOptions = {}
 ): void {
-  if (!branches.length) {
-    return console.info(`No branches merged into '${targetBranch}'.`);
-  }
+  if (!branches.length) { return console.info(`No branches merged into '${targetBranch}'.`); }
 
-  console.info(`${pluralize(branches.length, ["branch", "branches"])} merged into '${targetBranch}':`);
+  const pluralized = pluralize(branches.length, ["branch", "branches"]);
+
+  console.info(`${pluralized} merged into '${targetBranch}':`);
   console.info(formatTaskBranches(branches, config).join("\n"));
 
   const remoteBranches = fetchRemoteBranches("origin");
   const remoteMerged = branches.filter(branch => remoteBranches.includes(branch));
-  if (!options.deleteBranches) {
-    console.info("\nRun the following to delete branches, or use the --delete option to delete them automatically:");
-    console.info(`locally:\n  git branch --delete ${branches.join(" ")}`);
-    if (remoteMerged.length) { console.info(`remotely:\n  git push origin --delete ${remoteMerged.join(" ")}`); }
-  } else {
-    try {
-      console.info("\nDeleting branches locally...");
-      deleteLocalBranches(branches);
-      if (remoteMerged.length) {
-        console.info("\nDeleting branches remotely...");
-        deleteRemoteBranches(remoteMerged);
-      }
-      console.info("Branches deleted successfully.");
-    } catch (error) {
-      logError("Failed to delete branches", error);
-    }
+  if (options.deleteBranches) {
+    deleteBranches(branches, remoteMerged);
+    console.info("Branches deleted successfully.");
+    return;
+  }
+
+  console.info(`\nUse --delete to delete ${pluralized} automatically.`);
+  console.info("\nDelete locally:");
+  console.info(`  git branch --delete ${branches.join(" ")}`);
+  if (remoteMerged.length) {
+    console.info("\nDelete remotely:");
+    console.info(`  git push origin --delete ${remoteMerged.join(" ")}`);
   }
 }

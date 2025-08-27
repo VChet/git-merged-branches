@@ -1,4 +1,5 @@
 import { execSync } from "node:child_process";
+import { cwd } from "node:process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { logError } from "./helpers";
@@ -67,7 +68,7 @@ export function fetchRemoteBranches(remote = "origin"): string[] {
 
 export function getConfig(): GitMergedConfig {
   try {
-    const pkgPath = join(process.cwd(), "package.json");
+    const pkgPath = join(cwd(), "package.json");
     const pkg = JSON.parse(readFileSync(pkgPath, "utf-8"));
     return pkg["git-merged-branches"] || {};
   } catch (error) {
@@ -76,10 +77,21 @@ export function getConfig(): GitMergedConfig {
   }
 }
 
-export function deleteLocalBranches(branches: string[]): void {
+function deleteLocalBranches(branches: string[]): void {
   execSync(`git branch --delete ${branches.join(" ")}`, { stdio: "inherit" });
 }
-
-export function deleteRemoteBranches(branches: string[]): void {
+function deleteRemoteBranches(branches: string[]): void {
   execSync(`git push origin --delete ${branches.join(" ")}`, { stdio: "inherit" });
+}
+export function deleteBranches(localBranches: string[], remoteBranches: string[]): void {
+  try {
+    console.info("\nDeleting branches locally…");
+    deleteLocalBranches(localBranches);
+    if (remoteBranches.length) {
+      console.info("\nDeleting branches remotely…");
+      deleteRemoteBranches(remoteBranches);
+    }
+  } catch (error) {
+    logError("Failed to delete branches", error);
+  }
 }
