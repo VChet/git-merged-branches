@@ -44,13 +44,13 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.1",
-    "@types/node": "^24.3.0",
+    "@types/node": "^24.7.0",
     "dotenv-cli": "^10.0.0",
-    "esbuild": "^0.25.9",
-    "eslint": "^9.34.0",
+    "esbuild": "^0.25.10",
+    "eslint": "^9.37.0",
     "neostandard": "^0.12.2",
-    "release-it": "^19.0.4",
-    "typescript": "^5.9.2",
+    "release-it": "^19.0.5",
+    "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   },
   "pnpm": {
@@ -70,6 +70,7 @@
       "safe-buffer": "npm:@nolyfill/safe-buffer@^1",
       "safer-buffer": "npm:@nolyfill/safer-buffer@^1",
       "string.prototype.matchall": "npm:@nolyfill/string.prototype.matchall@^1",
+      "string.prototype.repeat": "npm:@nolyfill/string.prototype.repeat@^1",
       "typedarray": "npm:@nolyfill/typedarray@^1"
     }
   }
