@@ -38,18 +38,15 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
     "test": "vitest --run",
-    "release:patch": "dotenv release-it patch",
-    "release:minor": "dotenv release-it minor",
-    "release:major": "dotenv release-it major"
+    "release": "npm run lint:all && npm run test && commit-and-tag-version"
   },
   "devDependencies": {
-    "@release-it/conventional-changelog": "^10.0.1",
     "@types/node": "^24.7.0",
+    "commit-and-tag-version": "^12.6.0",
     "dotenv-cli": "^10.0.0",
     "esbuild": "^0.25.10",
     "eslint": "^9.37.0",
     "neostandard": "^0.12.2",
-    "release-it": "^19.0.5",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   },
@@ -61,8 +58,10 @@
       "array.prototype.flatmap": "npm:@nolyfill/array.prototype.flatmap@^1",
       "array.prototype.tosorted": "npm:@nolyfill/array.prototype.tosorted@^1",
       "es-iterator-helpers": "npm:@nolyfill/es-iterator-helpers@^1",
+      "es-set-tostringtag": "npm:@nolyfill/es-set-tostringtag@^1",
       "hasown": "npm:@nolyfill/hasown@^1",
       "is-core-module": "npm:@nolyfill/is-core-module@^1",
+      "isarray": "npm:@nolyfill/isarray@^1",
       "object.assign": "npm:@nolyfill/object.assign@^1",
       "object.entries": "npm:@nolyfill/object.entries@^1",
       "object.fromentries": "npm:@nolyfill/object.fromentries@^1",
