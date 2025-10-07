@@ -126,7 +126,7 @@ or report [issues](https://github.com/VChet/git-merged-branches/issues).
 [npm-version-href]: https://npmjs.com/package/git-merged-branches
 [npm-downloads-img]: https://img.shields.io/npm/dm/git-merged-branches?style=flat-square
 [npm-downloads-href]: https://npmjs.com/package/git-merged-branches
-[build-img]: https://img.shields.io/github/actions/workflow/status/VChet/git-merged-branches/build.yml?style=flat-square
+[build-img]: https://img.shields.io/github/actions/workflow/status/VChet/git-merged-branches/build.yaml?style=flat-square
 [build-href]: https://github.com/VChet/git-merged-branches/actions/workflows/build.yml
 [deep-wiki-img]: https://img.shields.io/badge/ask-DeepWiki-blue?style=flat-square
 [deep-wiki-href]: https://deepwiki.com/VChet/git-merged-branches
