@@ -29,7 +29,7 @@
   "files": [
     "dist/",
     "README.md",
-    "LICENSE.MD"
+    "LICENSE.md"
   ],
   "scripts": {
     "build": "node build.js",
@@ -38,15 +38,18 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
     "test": "vitest --run",
-    "release": "npm run lint:all && npm run test && commit-and-tag-version"
+    "release:lint": "cross-env NODE_ENV=production npm run lint:all && npm run test && npm run build && publint",
+    "release": "npm run release:lint && commit-and-tag-version"
   },
   "devDependencies": {
     "@types/node": "^24.7.0",
     "commit-and-tag-version": "^12.6.0",
+    "cross-env": "^10.1.0",
     "dotenv-cli": "^10.0.0",
     "esbuild": "^0.25.10",
     "eslint": "^9.37.0",
     "neostandard": "^0.12.2",
+    "publint": "^0.3.14",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   },
