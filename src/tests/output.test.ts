@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach, beforeAll, afterAll } from "vitest";
 import { formatTaskBranches, outputMergedBranches } from "../output";
 import * as repoMethods from "../repo";
 import type { GitMergedConfig } from "../types";
@@ -9,6 +9,10 @@ const DEFAULT_CONFIG: GitMergedConfig = {
 };
 
 describe("formatTaskBranches", () => {
+  let warnSpy: ReturnType<typeof vi.spyOn>;
+  beforeAll(() => { warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {}); });
+  afterAll(() => { warnSpy.mockRestore(); });
+
   it("should format branches with issue URL correctly", () => {
     const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
     const result = formatTaskBranches(branches, DEFAULT_CONFIG);
@@ -71,6 +75,10 @@ describe("outputMergedBranches", () => {
   beforeEach(() => {
     infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
     warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+  });
+  afterEach(() => {
+    infoSpy.mockRestore();
+    warnSpy.mockRestore();
   });
 
   it("should log the correct branches when there are local merged branches", () => {

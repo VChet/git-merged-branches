@@ -8,7 +8,7 @@
     "issue-tracker"
   ],
   "type": "module",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "license": "MIT",
   "author": {
     "name": "VChet",
@@ -23,32 +23,35 @@
   },
   "homepage": "https://github.com/VChet/git-merged-branches#readme",
   "bin": {
-    "git-merged-branches": "dist/index.js",
-    "gmb": "dist/index.js"
+    "git-merged-branches": "dist/index.mjs",
+    "gmb": "dist/index.mjs"
   },
   "files": [
     "dist/",
     "README.md",
-    "LICENSE.MD"
+    "LICENSE.md"
   ],
   "scripts": {
-    "build": "node build.js",
+    "build": "tsdown",
+    "test": "vitest --run",
     "lint:ts": "tsc --noEmit",
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
-    "test": "vitest --run",
-    "release": "npm run lint:all && npm run test && commit-and-tag-version"
+    "lint:release": "cross-env NODE_ENV=production npm run lint:all && npm test && npm run build",
+    "release": "npm run lint:release && commit-and-tag-version"
   },
   "devDependencies": {
-    "@types/node": "^24.7.0",
-    "commit-and-tag-version": "^12.6.0",
-    "dotenv-cli": "^10.0.0",
-    "esbuild": "^0.25.10",
-    "eslint": "^9.37.0",
+    "@types/node": "^24.10.1",
+    "commit-and-tag-version": "^12.6.1",
+    "cross-env": "^10.1.0",
+    "dotenv-cli": "^11.0.0",
+    "eslint": "^9.39.1",
     "neostandard": "^0.12.2",
+    "publint": "^0.3.15",
+    "tsdown": "^0.17.0",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.15"
   },
   "pnpm": {
     "overrides": {
@@ -58,7 +61,6 @@
       "array.prototype.flatmap": "npm:@nolyfill/array.prototype.flatmap@^1",
       "array.prototype.tosorted": "npm:@nolyfill/array.prototype.tosorted@^1",
       "es-iterator-helpers": "npm:@nolyfill/es-iterator-helpers@^1",
-      "es-set-tostringtag": "npm:@nolyfill/es-set-tostringtag@^1",
       "hasown": "npm:@nolyfill/hasown@^1",
       "is-core-module": "npm:@nolyfill/is-core-module@^1",
       "isarray": "npm:@nolyfill/isarray@^1",
@@ -67,7 +69,6 @@
       "object.fromentries": "npm:@nolyfill/object.fromentries@^1",
       "object.values": "npm:@nolyfill/object.values@^1",
       "safe-buffer": "npm:@nolyfill/safe-buffer@^1",
-      "safer-buffer": "npm:@nolyfill/safer-buffer@^1",
       "string.prototype.matchall": "npm:@nolyfill/string.prototype.matchall@^1",
       "string.prototype.repeat": "npm:@nolyfill/string.prototype.repeat@^1",
       "typedarray": "npm:@nolyfill/typedarray@^1"

@@ -98,13 +98,13 @@ To contribute or test locally:
 1. Install dependencies:
 
     ```bash
-    npm install
+    pnpm install
     ```
 
 1. Build the project:
 
     ```bash
-    npm run build
+    pnpm run build
     ```
 
 1. Link it locally for testing:
