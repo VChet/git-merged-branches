@@ -33,13 +33,13 @@
   ],
   "scripts": {
     "build": "node build.js",
+    "test": "vitest --run",
     "lint:ts": "tsc --noEmit",
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
-    "test": "vitest --run",
-    "release:lint": "cross-env NODE_ENV=production npm run lint:all && npm run test && npm run build && publint",
-    "release": "npm run release:lint && commit-and-tag-version"
+    "lint:release": "cross-env NODE_ENV=production npm run lint:all && npm test && npm run build && publint",
+    "release": "npm run lint:release && commit-and-tag-version"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
