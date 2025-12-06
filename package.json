@@ -42,16 +42,16 @@
     "release": "npm run release:lint && commit-and-tag-version"
   },
   "devDependencies": {
-    "@types/node": "^24.7.0",
-    "commit-and-tag-version": "^12.6.0",
+    "@types/node": "^24.10.1",
+    "commit-and-tag-version": "^12.6.1",
     "cross-env": "^10.1.0",
-    "dotenv-cli": "^10.0.0",
-    "esbuild": "^0.25.10",
-    "eslint": "^9.37.0",
+    "dotenv-cli": "^11.0.0",
+    "esbuild": "^0.27.1",
+    "eslint": "^9.39.1",
     "neostandard": "^0.12.2",
-    "publint": "^0.3.14",
+    "publint": "^0.3.15",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.15"
   },
   "pnpm": {
     "overrides": {
@@ -61,7 +61,6 @@
       "array.prototype.flatmap": "npm:@nolyfill/array.prototype.flatmap@^1",
       "array.prototype.tosorted": "npm:@nolyfill/array.prototype.tosorted@^1",
       "es-iterator-helpers": "npm:@nolyfill/es-iterator-helpers@^1",
-      "es-set-tostringtag": "npm:@nolyfill/es-set-tostringtag@^1",
       "hasown": "npm:@nolyfill/hasown@^1",
       "is-core-module": "npm:@nolyfill/is-core-module@^1",
       "isarray": "npm:@nolyfill/isarray@^1",
@@ -70,7 +69,6 @@
       "object.fromentries": "npm:@nolyfill/object.fromentries@^1",
       "object.values": "npm:@nolyfill/object.values@^1",
       "safe-buffer": "npm:@nolyfill/safe-buffer@^1",
-      "safer-buffer": "npm:@nolyfill/safer-buffer@^1",
       "string.prototype.matchall": "npm:@nolyfill/string.prototype.matchall@^1",
       "string.prototype.repeat": "npm:@nolyfill/string.prototype.repeat@^1",
       "typedarray": "npm:@nolyfill/typedarray@^1"
