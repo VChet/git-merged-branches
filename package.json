@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/VChet/git-merged-branches#readme",
   "bin": {
-    "git-merged-branches": "dist/index.js",
-    "gmb": "dist/index.js"
+    "git-merged-branches": "dist/index.mjs",
+    "gmb": "dist/index.mjs"
   },
   "files": [
     "dist/",
@@ -32,13 +32,13 @@
     "LICENSE.md"
   ],
   "scripts": {
-    "build": "node build.js",
+    "build": "tsdown",
     "test": "vitest --run",
     "lint:ts": "tsc --noEmit",
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
-    "lint:release": "cross-env NODE_ENV=production npm run lint:all && npm test && npm run build && publint",
+    "lint:release": "cross-env NODE_ENV=production npm run lint:all && npm test && npm run build",
     "release": "npm run lint:release && commit-and-tag-version"
   },
   "devDependencies": {
@@ -46,10 +46,10 @@
     "commit-and-tag-version": "^12.6.1",
     "cross-env": "^10.1.0",
     "dotenv-cli": "^11.0.0",
-    "esbuild": "^0.27.1",
     "eslint": "^9.39.1",
     "neostandard": "^0.12.2",
     "publint": "^0.3.15",
+    "tsdown": "^0.17.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.15"
   },
