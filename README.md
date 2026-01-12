@@ -56,14 +56,25 @@ Branches deleted successfully.
 You can configure the utility in your `package.json` under `git-merged-branches`. This allows you to set:
 
 - **issueUrlFormat**: Base URL for your issue tracker (must be a valid URL).
+  - For JIRA-style trackers, you can can include the prefix in the URL: `https://your-jira-instance.net/browse/{{prefix}}{{id}}`.
+  - Fir GitHub-style issues, omit the prefix in the URL: `https://github.com/org/repo/issues/{{id}}`.
 - **issueUrlPrefix**: Array of prefixes for issue identifiers in branch names.
 
-Example configuration:
+Example configuration for JIRA:
 
 ```json
 "git-merged-branches": {
   "issueUrlFormat": "https://your-jira-instance.net/browse/{{prefix}}{{id}}",
   "issueUrlPrefix": ["TOKEN-", "PROJECT-"]
+}
+```
+
+Example configuration for GitHub:
+
+```json
+"git-merged-branches": {
+  "issueUrlFormat": "https://github.com/org/repo/issues/{{id}}",
+  "issueUrlPrefix": ["#"]
 }
 ```
 
@@ -76,6 +87,7 @@ fix/EXTERNAL-391
 fix/TOKEN-123_some-fix <https://your-jira-instance.net/browse/TOKEN-123>
 hotfix
 TOKEN-800_new-feature <https://your-jira-instance.net/browse/TOKEN-800>
+refactor/#55_cleanup <https://github.com/org/repo/issues/55>
 ```
 
 If the configuration is invalid, warnings will be shown and the utility will skip formatting URLs.

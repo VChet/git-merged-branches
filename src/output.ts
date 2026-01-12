@@ -9,9 +9,11 @@ function formatSingleBranch(
   issueUrlPrefix: NonNullable<GitMergedConfig["issueUrlPrefix"]>
 ): string {
   for (const prefix of issueUrlPrefix) {
-    const prefixRegex = new RegExp(`\\b${prefix}(\\d+)`, "i");
+    const prefixRegex = prefix.match(/^\w/) ?
+      new RegExp(`\\b${prefix}(\\d+)`, "i") :
+      new RegExp(`${prefix}(\\d+)`, "i");
     const match = branch.match(prefixRegex);
-    if (!match) { continue; }
+    if (!match) continue;
 
     const url = issueUrlFormat.replace("{{prefix}}", prefix).replace("{{id}}", match[1]);
     return `${branch} <${url}>`;

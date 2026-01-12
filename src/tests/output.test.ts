@@ -35,6 +35,19 @@ describe("formatTaskBranches", () => {
     ]);
   });
 
+  it("should support GitHub issue prefix", () => {
+    const branches = ["fix/#123_fix", "feat/#45_add-feature"];
+    const config: GitMergedConfig = {
+      issueUrlFormat: "https://github.com/org/repo/issues/{{id}}",
+      issueUrlPrefix: ["#"]
+    };
+    const result = formatTaskBranches(branches, config);
+    expect(result).toEqual([
+      "fix/#123_fix <https://github.com/org/repo/issues/123>",
+      "feat/#45_add-feature <https://github.com/org/repo/issues/45>"
+    ]);
+  });
+
   it("should not format branches if issueUrlFormat is not provided", () => {
     const branches = ["feat/TOKEN-100"];
     const config = { issueUrlFormat: DEFAULT_CONFIG.issueUrlFormat };
