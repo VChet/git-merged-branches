@@ -42,15 +42,15 @@
     "release": "npm run lint:release && commit-and-tag-version"
   },
   "devDependencies": {
-    "@types/node": "^25.0.3",
+    "@types/node": "^25.0.6",
     "commit-and-tag-version": "^12.6.1",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
     "neostandard": "^0.12.2",
     "publint": "^0.3.16",
-    "tsdown": "^0.18.2",
+    "tsdown": "^0.19.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "vitest": "^4.0.17"
   },
   "pnpm": {
     "overrides": {
