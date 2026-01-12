@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.3.2 (2026-01-12)
+
+
+### Features
+
+* **output:** handle GitHub-style issues ([f4008d6](https://github.com/VChet/git-merged-branches/commit/f4008d6ede97f39945d524ac939f1a4e7e5fdc5f))
+
 ## 0.3.1 (2025-12-06)
 
 
