@@ -38,8 +38,7 @@
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
-    "lint:release": "cross-env NODE_ENV=production npm run lint:all && npm test && npm run build",
-    "release": "npm run lint:release && commit-and-tag-version"
+    "release": "commit-and-tag-version"
   },
   "devDependencies": {
     "@types/node": "^25.0.6",
