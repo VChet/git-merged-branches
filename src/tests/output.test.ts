@@ -17,8 +17,8 @@ describe("formatTaskBranches", () => {
     const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
     const result = formatTaskBranches(branches, DEFAULT_CONFIG);
     expect(result).toEqual([
-      "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
-      "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
+      "feat/TOKEN-800_new-feature https://test-instance.org/browse/TOKEN-800",
+      "fix/TOKEN-123_some-fix https://test-instance.org/browse/TOKEN-123"
     ]);
   });
 
@@ -30,8 +30,8 @@ describe("formatTaskBranches", () => {
     };
     const result = formatTaskBranches(branches, config);
     expect(result).toEqual([
-      "fix/TOKEN-123_fix <https://example.com/browse/TOKEN-123>",
-      "feat/PROJECT-45_add-feature <https://example.com/browse/PROJECT-45>"
+      "fix/TOKEN-123_fix https://example.com/browse/TOKEN-123",
+      "feat/PROJECT-45_add-feature https://example.com/browse/PROJECT-45"
     ]);
   });
 
@@ -43,8 +43,8 @@ describe("formatTaskBranches", () => {
     };
     const result = formatTaskBranches(branches, config);
     expect(result).toEqual([
-      "fix/#123_fix <https://github.com/org/repo/issues/123>",
-      "feat/#45_add-feature <https://github.com/org/repo/issues/45>"
+      "fix/#123_fix https://github.com/org/repo/issues/123",
+      "feat/#45_add-feature https://github.com/org/repo/issues/45"
     ]);
   });
 
@@ -98,15 +98,15 @@ describe("outputMergedBranches", () => {
     const branches = ["feat/TOKEN-800_new-feature", "fix/TOKEN-123_some-fix"];
 
     outputMergedBranches(branches, "master", DEFAULT_CONFIG);
-    expect(infoSpy).toHaveBeenNthCalledWith(1, "2 branches merged into 'master':");
+    expect(infoSpy).toHaveBeenNthCalledWith(1, "2 branches merged into master:");
     const branchOutput = [
-      "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
-      "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
+      "feat/TOKEN-800_new-feature https://test-instance.org/browse/TOKEN-800",
+      "fix/TOKEN-123_some-fix https://test-instance.org/browse/TOKEN-123"
     ];
     expect(infoSpy).toHaveBeenNthCalledWith(2, branchOutput.join("\n"));
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
-    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nUse --delete to delete 2 branches automatically.");
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nUse --delete to delete 2 branches automatically");
     expect(infoSpy).toHaveBeenNthCalledWith(4, "\nDelete locally:");
     expect(infoSpy).toHaveBeenNthCalledWith(5, `  ${localDelete}`);
     expect(infoSpy).toHaveBeenCalledTimes(5);
@@ -118,16 +118,16 @@ describe("outputMergedBranches", () => {
     const fetchRemoteMock = vi.spyOn(repoMethods, "fetchRemoteBranches").mockReturnValue(branches);
 
     outputMergedBranches(branches, "master", DEFAULT_CONFIG);
-    expect(infoSpy).toHaveBeenNthCalledWith(1, "2 branches merged into 'master':");
+    expect(infoSpy).toHaveBeenNthCalledWith(1, "2 branches merged into master:");
     const branchOutput = [
-      "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>",
-      "fix/TOKEN-123_some-fix <https://test-instance.org/browse/TOKEN-123>"
+      "feat/TOKEN-800_new-feature https://test-instance.org/browse/TOKEN-800",
+      "fix/TOKEN-123_some-fix https://test-instance.org/browse/TOKEN-123"
     ];
     expect(infoSpy).toHaveBeenNthCalledWith(2, branchOutput.join("\n"));
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
     const remoteDelete = `git push origin --delete ${branches.join(" ")}`;
-    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nUse --delete to delete 2 branches automatically.");
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nUse --delete to delete 2 branches automatically");
     expect(infoSpy).toHaveBeenNthCalledWith(4, "\nDelete locally:");
     expect(infoSpy).toHaveBeenNthCalledWith(5, `  ${localDelete}`);
     expect(infoSpy).toHaveBeenNthCalledWith(6, "\nDelete remotely:");
@@ -142,11 +142,11 @@ describe("outputMergedBranches", () => {
     const branches = ["feat/TOKEN-800_new-feature"];
 
     outputMergedBranches(branches, "master", DEFAULT_CONFIG);
-    expect(infoSpy).toHaveBeenNthCalledWith(1, "1 branch merged into 'master':");
-    expect(infoSpy).toHaveBeenNthCalledWith(2, "feat/TOKEN-800_new-feature <https://test-instance.org/browse/TOKEN-800>");
+    expect(infoSpy).toHaveBeenNthCalledWith(1, "1 branch merged into master:");
+    expect(infoSpy).toHaveBeenNthCalledWith(2, "feat/TOKEN-800_new-feature https://test-instance.org/browse/TOKEN-800");
 
     const localDelete = `git branch --delete ${branches.join(" ")}`;
-    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nUse --delete to delete 1 branch automatically.");
+    expect(infoSpy).toHaveBeenNthCalledWith(3, "\nUse --delete to delete 1 branch automatically");
     expect(infoSpy).toHaveBeenNthCalledWith(4, "\nDelete locally:");
     expect(infoSpy).toHaveBeenNthCalledWith(5, `  ${localDelete}`);
     expect(infoSpy).toHaveBeenCalledTimes(5);
@@ -155,7 +155,7 @@ describe("outputMergedBranches", () => {
 
   it("should log a message when no branches are merged", () => {
     outputMergedBranches([], "master", DEFAULT_CONFIG);
-    expect(infoSpy).toHaveBeenCalledWith("No branches merged into 'master'.");
+    expect(infoSpy).toHaveBeenCalledWith("No branches merged into master");
     expect(infoSpy).toHaveBeenCalledTimes(1);
     expect(warnSpy).not.toHaveBeenCalled();
   });
@@ -166,7 +166,7 @@ describe("outputMergedBranches", () => {
 
     outputMergedBranches(branches, "master", config);
     expect(infoSpy).toHaveBeenCalledTimes(5);
-    expect(warnSpy).toHaveBeenCalledWith("'invalid-url' is not a valid URL. Skipped formatting.");
+    expect(warnSpy).toHaveBeenCalledWith("invalid-url is not a valid URL. Skipped formatting");
     expect(warnSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -179,7 +179,7 @@ describe("outputMergedBranches", () => {
     outputMergedBranches(branches, "master", DEFAULT_CONFIG, { deleteBranches: true });
 
     expect(deleteMock).toHaveBeenCalledWith(branches, branches);
-    expect(infoSpy).toHaveBeenCalledWith("Branches deleted successfully.");
+    expect(infoSpy).toHaveBeenCalledWith("Branches deleted successfully");
 
     deleteMock.mockRestore();
     fetchRemoteMock.mockRestore();

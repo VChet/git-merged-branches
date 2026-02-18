@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.4.0 (2026-02-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires Node.js >= 22.13.0
+
+### Features
+
+* update output formatting ([172a229](https://github.com/VChet/git-merged-branches/commit/172a2290af26e39bfda3987738ad41d9e0184926))
+
 ## 0.3.3 (2026-02-18)
 
 
