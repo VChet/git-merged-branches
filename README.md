@@ -33,7 +33,7 @@ Example output:
 
 ```bash
 $ git-merged-branches
-2 branches merged into 'master':
+2 branches merged into master:
 fix/crash-on-start
 feat/add-new-feature
 ```
@@ -42,7 +42,7 @@ You can also delete these merged branches with the `--delete` option:
 
 ```bash
 $ git-merged-branches --delete
-2 branches merged into 'master':
+2 branches merged into master:
 fix/crash-on-start
 feature/add-new-feature
 
@@ -82,12 +82,12 @@ With this setup, `git-merged-branches` will generate links for branches with suc
 
 ```bash
 $ git-merged-branches
-4 branches merged into 'master':
+4 branches merged into master:
 fix/EXTERNAL-391
-fix/TOKEN-123_some-fix <https://your-jira-instance.net/browse/TOKEN-123>
+fix/TOKEN-123_some-fix https://your-jira-instance.net/browse/TOKEN-123
 hotfix
-TOKEN-800_new-feature <https://your-jira-instance.net/browse/TOKEN-800>
-refactor/#55_cleanup <https://github.com/org/repo/issues/55>
+TOKEN-800_new-feature https://your-jira-instance.net/browse/TOKEN-800
+refactor/#55_cleanup https://github.com/org/repo/issues/55
 ```
 
 If the configuration is invalid, warnings will be shown and the utility will skip formatting URLs.

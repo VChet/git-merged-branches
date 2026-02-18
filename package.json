@@ -31,6 +31,9 @@
     "README.md",
     "dist/"
   ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "build": "tsdown",
     "test": "vitest --run",
