@@ -1,7 +1,7 @@
 {
   "name": "git-merged-branches",
   "type": "module",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "CLI tool to list all Git branches merged into a base branch with issue link formatting",
   "author": {
     "name": "VChet",
