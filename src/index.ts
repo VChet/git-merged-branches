@@ -1,7 +1,7 @@
 import process from "node:process";
-import { getConfig, getDefaultTargetBranch, getMergedBranches, isDetachedHead, isGitRepo } from "./repo.js";
-import { outputMergedBranches } from "./output.js";
 import { logError } from "./helpers.js";
+import { outputMergedBranches } from "./output.js";
+import { getConfig, getDefaultTargetBranch, getMergedBranches, isDetachedHead, isGitRepo } from "./repo.js";
 
 function main(): void {
   if (!isGitRepo()) {

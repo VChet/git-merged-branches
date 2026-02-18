@@ -50,7 +50,7 @@ export function outputMergedBranches(
   console.info(formatTaskBranches(branches, config).join("\n"));
 
   const remoteBranches = fetchRemoteBranches("origin");
-  const remoteMerged = branches.filter(branch => remoteBranches.includes(branch));
+  const remoteMerged = branches.filter((branch) => remoteBranches.includes(branch));
   if (options.deleteBranches) {
     deleteBranches(branches, remoteMerged);
     console.info("Branches deleted successfully.");

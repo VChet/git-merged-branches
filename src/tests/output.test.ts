@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach, beforeAll, afterAll } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { formatTaskBranches, outputMergedBranches } from "../output";
 import * as repoMethods from "../repo";
 import type { GitMergedConfig } from "../types";
@@ -66,13 +66,13 @@ describe("formatTaskBranches", () => {
     const branches = ["feat/TOKEN-800_new-feature"];
     const config: GitMergedConfig = { ...DEFAULT_CONFIG, issueUrlFormat: "invalid-url" };
     const result = formatTaskBranches(branches, config);
-    expect(result).toEqual(branches);  // Invalid URL, no changes
+    expect(result).toEqual(branches); // Invalid URL, no changes
   });
 
   it("should not format branches without matching prefix", () => {
     const branches = ["fix/hotfix", "feature/no-issue"];
     const result = formatTaskBranches(branches, DEFAULT_CONFIG);
-    expect(result).toEqual(branches);  // No matching prefix, no changes
+    expect(result).toEqual(branches); // No matching prefix, no changes
   });
 
   it("should not format branches when prefix is part of another word", () => {
