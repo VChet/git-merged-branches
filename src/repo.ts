@@ -1,7 +1,7 @@
 import { execSync } from "node:child_process";
-import { cwd } from "node:process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { cwd } from "node:process";
 import { logError } from "./helpers";
 import type { GitMergedConfig } from "./types";
 
@@ -33,9 +33,12 @@ function isBranchExists(branch: string): boolean {
 }
 
 export function getDefaultTargetBranch(): string | null {
-  if (isBranchExists("main")) { return "main"; }
-  else if (isBranchExists("master")) { return "master"; }
-  else { return null; }
+  if (isBranchExists("main")) {
+    return "main";
+  } else if (isBranchExists("master")) {
+    return "master";
+  }
+  return null;
 }
 
 export function getMergedBranches(targetBranch: string): string[] {
@@ -57,9 +60,9 @@ export function fetchRemoteBranches(remote = "origin"): string[] {
     const output = execSync(`git ls-remote --heads ${remote}`, { encoding: "utf-8" });
     return output
       .split("\n")
-      .map(line => line.split("\t")[1])
-      .filter(ref => ref?.startsWith("refs/heads/"))
-      .map(ref => ref.replace("refs/heads/", ""));
+      .map((line) => line.split("\t")[1])
+      .filter((ref) => ref?.startsWith("refs/heads/"))
+      .map((ref) => ref.replace("refs/heads/", ""));
   } catch (error) {
     logError(`Could not fetch remote branches from '${remote}'`, error);
     return [];

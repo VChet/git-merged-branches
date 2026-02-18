@@ -1,19 +1,14 @@
 {
   "name": "git-merged-branches",
-  "description": "CLI tool to list all Git branches merged into a base branch with issue link formatting",
-  "keywords": [
-    "git",
-    "cli",
-    "branch",
-    "issue-tracker"
-  ],
   "type": "module",
   "version": "0.3.2",
-  "license": "MIT",
+  "description": "CLI tool to list all Git branches merged into a base branch with issue link formatting",
   "author": {
     "name": "VChet",
     "url": "https://github.com/VChet"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/VChet/git-merged-branches#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VChet/git-merged-branches.git"
@@ -21,15 +16,20 @@
   "bugs": {
     "url": "https://github.com/VChet/git-merged-branches/issues"
   },
-  "homepage": "https://github.com/VChet/git-merged-branches#readme",
+  "keywords": [
+    "git",
+    "cli",
+    "branch",
+    "issue-tracker"
+  ],
   "bin": {
     "git-merged-branches": "dist/index.mjs",
     "gmb": "dist/index.mjs"
   },
   "files": [
-    "dist/",
+    "LICENSE.md",
     "README.md",
-    "LICENSE.md"
+    "dist/"
   ],
   "scripts": {
     "build": "tsdown",
