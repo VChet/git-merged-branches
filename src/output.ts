@@ -1,4 +1,4 @@
-import { bold, cyan, green, pluralize, underline, yellow } from "./helpers.js";
+import { style, pluralize } from "./helpers.js";
 import { deleteBranches, fetchRemoteBranches } from "./repo.js";
 import { isValidURL } from "./validate.js";
 import type { GitMergedConfig, GitMergedOptions } from "./types.js";
@@ -16,7 +16,7 @@ function formatSingleBranch(
     if (!match) continue;
 
     const url = issueUrlFormat.replace("{{prefix}}", prefix).replace("{{id}}", match[1]);
-    return `${branch} ${underline(url)}`;
+    return `${branch} ${style.underline(url)}`;
   }
   return branch;
 }
@@ -25,12 +25,12 @@ export function formatTaskBranches(branches: string[], { issueUrlFormat, issueUr
   if (!issueUrlFormat || !issueUrlPrefix) { return branches; }
   // issueUrlFormat
   if (!isValidURL(issueUrlFormat)) {
-    console.warn(`${yellow(issueUrlFormat)} is not a valid URL. Skipped formatting`);
+    console.warn(`${style.yellow(issueUrlFormat)} is not a valid URL. Skipped formatting`);
     return branches;
   }
   // issueUrlPrefix
   if (!Array.isArray(issueUrlPrefix)) {
-    console.warn(`${yellow(issueUrlPrefix)} is not an array. Skipped formatting`);
+    console.warn(`${style.yellow(issueUrlPrefix)} is not an array. Skipped formatting`);
     return branches;
   }
   return branches.map((branch) => formatSingleBranch(branch, issueUrlFormat, issueUrlPrefix));
@@ -42,26 +42,26 @@ export function outputMergedBranches(
   config: GitMergedConfig,
   options: GitMergedOptions = {}
 ): void {
-  if (!branches.length) { return console.info(`No branches merged into ${bold(targetBranch)}`); }
+  if (!branches.length) { return console.info(`No branches merged into ${style.bold(targetBranch)}`); }
 
   const pluralized = pluralize(branches.length, ["branch", "branches"]);
 
-  console.info(`${yellow(pluralized)} merged into ${bold(targetBranch)}:`);
+  console.info(`${style.yellow(pluralized)} merged into ${style.bold(targetBranch)}:`);
   console.info(formatTaskBranches(branches, config).join("\n"));
 
   const remoteBranches = fetchRemoteBranches("origin");
   const remoteMerged = branches.filter((branch) => remoteBranches.includes(branch));
   if (options.deleteBranches) {
     deleteBranches(branches, remoteMerged);
-    console.info(green("Branches deleted successfully"));
+    console.info(style.green("Branches deleted successfully"));
     return;
   }
 
-  console.info(`\nUse ${cyan("--delete")} to delete ${yellow(pluralized)} automatically`);
+  console.info(`\nUse ${style.cyan("--delete")} to delete ${style.yellow(pluralized)} automatically`);
   console.info("\nDelete locally:");
-  console.info(cyan(`  git branch --delete ${branches.join(" ")}`));
+  console.info(style.cyan(`  git branch --delete ${branches.join(" ")}`));
   if (remoteMerged.length) {
     console.info("\nDelete remotely:");
-    console.info(cyan(`  git push origin --delete ${remoteMerged.join(" ")}`));
+    console.info(style.cyan(`  git push origin --delete ${remoteMerged.join(" ")}`));
   }
 }
