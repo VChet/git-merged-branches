@@ -1,12 +1,13 @@
 {
   "name": "git-merged-branches",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "CLI tool to list all Git branches merged into a base branch with issue link formatting",
   "author": {
     "name": "VChet",
     "url": "https://github.com/VChet"
   },
+  "packageManager": "pnpm@10.34.1",
   "license": "MIT",
   "homepage": "https://github.com/VChet/git-merged-branches#readme",
   "repository": {
@@ -32,27 +33,26 @@
     "dist/"
   ],
   "engines": {
-    "node": ">=22.13.0"
+    "node": ">=22.18.0"
   },
   "scripts": {
     "build": "tsdown",
     "test": "vitest --run",
-    "lint:ts": "tsc --noEmit",
+    "lint:ts": "tsc",
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:all": "npm run lint:ts && npm run lint:js",
     "release": "commit-and-tag-version"
   },
   "devDependencies": {
-    "@types/node": "^25.2.3",
-    "commit-and-tag-version": "^12.6.1",
-    "cross-env": "^10.1.0",
-    "eslint": "^9.39.2",
-    "neostandard": "^0.12.2",
-    "publint": "^0.3.17",
-    "tsdown": "^0.20.3",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "@types/node": "^25.9.1",
+    "commit-and-tag-version": "^12.7.3",
+    "eslint": "~9.39.4",
+    "neostandard": "^0.13.0",
+    "publint": "^0.3.21",
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
   },
   "pnpm": {
     "overrides": {

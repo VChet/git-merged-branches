@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.5.0 (2026-06-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires Node.js >= 22.18.0
+
+* bump tsdown version ([5c766de](https://github.com/VChet/git-merged-branches/commit/5c766de559e0ae79a98b57c6a172466940093576))
+
 ## 0.4.0 (2026-02-18)
 
 

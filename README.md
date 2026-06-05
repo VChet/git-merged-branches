@@ -127,6 +127,10 @@ To contribute or test locally:
 
 Now you can run `git-merged-branches` on your local machine.
 
+## Security notes
+
+Git commands are executed via `child_process.execFileSync`, eliminating shell injection risks. Network access originates from Git operations, e.g. `git ls-remote`, not from the application itself.
+
 ## Contributing
 
 If you have any ideas, bug reports, or feature requests,
