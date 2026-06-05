@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { cwd } from "node:process";
@@ -7,7 +7,7 @@ import type { GitMergedConfig } from "./types";
 
 export function isGitRepo(): boolean {
   try {
-    execSync("git rev-parse --is-inside-work-tree", { stdio: "ignore" });
+    execFileSync("git", ["rev-parse", "--is-inside-work-tree"], { stdio: "ignore" });
     return true;
   } catch {
     return false;
@@ -16,7 +16,7 @@ export function isGitRepo(): boolean {
 
 export function isDetachedHead(): boolean {
   try {
-    const output = execSync("git symbolic-ref --quiet --short HEAD", { encoding: "utf-8" }).trim();
+    const output = execFileSync("git", ["symbolic-ref", "--quiet", "--short", "HEAD"], { encoding: "utf-8" }).trim();
     return output === "";
   } catch {
     return true;
@@ -25,7 +25,7 @@ export function isDetachedHead(): boolean {
 
 function isBranchExists(branch: string): boolean {
   try {
-    execSync(`git show-ref --verify --quiet refs/heads/${branch}`);
+    execFileSync("git", ["show-ref", "--verify", "--quiet", `refs/heads/${branch}`]);
     return true;
   } catch {
     return false;
@@ -42,14 +42,14 @@ export function getDefaultTargetBranch(): string | null {
 }
 
 export function getMergedBranches(targetBranch: string): string[] {
-  const baseCommit = execSync(`git rev-parse ${targetBranch}`, { encoding: "utf-8" }).trim();
-  const output = execSync(`git branch --merged ${targetBranch}`, { encoding: "utf-8" });
+  const baseCommit = execFileSync("git", ["rev-parse", targetBranch], { encoding: "utf-8" }).trim();
+  const output = execFileSync("git", ["branch", "--merged", targetBranch], { encoding: "utf-8" });
   return output.split("\n").reduce((acc: string[], line) => {
     // Ignore empty lines
     const branch = line.replace("*", "").trim();
     if (!branch) { return acc; }
     // Ignore branches on the base commit
-    const branchCommit = execSync(`git rev-parse ${branch}`, { encoding: "utf-8" }).trim();
+    const branchCommit = execFileSync("git", ["rev-parse", branch], { encoding: "utf-8" }).trim();
     if (branchCommit === baseCommit) { return acc; }
     return [...acc, branch];
   }, []);
@@ -57,7 +57,7 @@ export function getMergedBranches(targetBranch: string): string[] {
 
 export function fetchRemoteBranches(remote = "origin"): string[] {
   try {
-    const output = execSync(`git ls-remote --heads ${remote}`, { encoding: "utf-8" });
+    const output = execFileSync("git", ["ls-remote", "--heads", remote], { encoding: "utf-8" });
     return output
       .split("\n")
       .map((line) => line.split("\t")[1])
@@ -81,10 +81,10 @@ export function getConfig(): GitMergedConfig {
 }
 
 function deleteLocalBranches(branches: string[]): void {
-  execSync(`git branch --delete ${branches.join(" ")}`, { stdio: "inherit" });
+  execFileSync("git", ["branch", "--delete", ...branches], { stdio: "inherit" });
 }
 function deleteRemoteBranches(branches: string[]): void {
-  execSync(`git push origin --delete ${branches.join(" ")}`, { stdio: "inherit" });
+  execFileSync("git", ["push", "origin", "--delete", ...branches], { stdio: "inherit" });
 }
 export function deleteBranches(localBranches: string[], remoteBranches: string[]): void {
   try {
