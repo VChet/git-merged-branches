@@ -5,8 +5,8 @@ All notable changes to this project will be documented in this file. See [commit
 ## 0.5.1 (2026-08-18)
 
 * No significant changes
-## 0.5.0 (2026-06-05)
 
+## 0.5.0 (2026-06-05)
 
 ### ⚠ BREAKING CHANGES
 
@@ -15,7 +15,6 @@ All notable changes to this project will be documented in this file. See [commit
 * bump tsdown version ([5c766de](https://github.com/VChet/git-merged-branches/commit/5c766de559e0ae79a98b57c6a172466940093576))
 
 ## 0.4.0 (2026-02-18)
-
 
 ### ⚠ BREAKING CHANGES
 
@@ -27,11 +26,9 @@ All notable changes to this project will be documented in this file. See [commit
 
 ## 0.3.3 (2026-02-18)
 
-
 * No significant changes
 
 ## 0.3.2 (2026-01-12)
-
 
 ### Features
 
@@ -39,16 +36,13 @@ All notable changes to this project will be documented in this file. See [commit
 
 ## 0.3.1 (2025-12-06)
 
-
 * No significant changes
 
 ## 0.3.0 (2025-12-06)
 
-
 * No significant changes
 
 ## 0.2.8 (2025-10-07)
-
 
 * No significant changes
 
