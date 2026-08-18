@@ -1,0 +1,4 @@
+minimumReleaseAge: 0
+shellEmulator: true
+trustPolicy: no-downgrade
+packages: [.]

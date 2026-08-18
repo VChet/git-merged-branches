@@ -1,7 +1,7 @@
 module.exports = {
   tagPrefix: "",
   scripts: {
-    prerelease: "npm run lint:all && npm test && npm run build"
+    prerelease: "node --run lint:all && node --run test && node --run build"
   },
   writerOpts: {
     finalizeContext(context) {

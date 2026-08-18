@@ -1,5 +1,4 @@
 enginesNode: true
 format: repo
 reject:
-  - pnpm
-  - eslint # https://github.com/neostandard/neostandard/issues/350
+  - typescript # https://github.com/typescript-eslint/typescript-eslint/issues/10940
