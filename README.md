@@ -1,7 +1,7 @@
 # git-merged-branches
 
-[![npm version][npm-version-img]][npm-version-link]
-[![npm downloads][npm-downloads-img]][npm-downloads-link]
+[![npm version][npm-version-img]][npm-link]
+[![npm downloads][npm-downloads-img]][npm-link]
 [![build][build-img]][build-link]
 [![socket][socket-img]][socket-link]
 
@@ -135,10 +135,9 @@ or report [issues](https://github.com/VChet/git-merged-branches/issues).
 
 <!-- Badges -->
 [npm-version-img]: https://img.shields.io/npm/v/git-merged-branches?style=flat-square
-[npm-version-link]: https://npmjs.com/package/git-merged-branches
+[npm-link]: https://npmjs.com/package/git-merged-branches
 [npm-downloads-img]: https://img.shields.io/npm/dm/git-merged-branches?style=flat-square
-[npm-downloads-link]: https://npmjs.com/package/git-merged-branches
 [build-img]: https://img.shields.io/github/actions/workflow/status/VChet/git-merged-branches/build.yaml?style=flat-square
 [build-link]: https://github.com/VChet/git-merged-branches/actions/workflows/build.yml
-[socket-img]: https://badge.socket.dev/npm/package/git-merged-branches
+[socket-img]: https://img.shields.io/badge/socket.dev-555?logo=socket&logoColor=white&style=flat-square
 [socket-link]: https://socket.dev/npm/package/git-merged-branches
