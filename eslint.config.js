@@ -4,9 +4,9 @@ export default [
   ...neostandard({
     ts: true,
     noJsx: true,
-    semi: true,
-    ignores: ["dist/**/*"]
+    semi: true
   }),
+  { ignores: ["dist/**"] },
   {
     rules: {
       "@stylistic/arrow-parens": ["error", "always"],
@@ -18,7 +18,12 @@ export default [
         singleline: { delimiter: "comma" }
       }],
       "@stylistic/quotes": ["error", "double"],
-      "@stylistic/space-before-function-paren": ["error", "never"],
+      "@stylistic/space-before-function-paren": ["error", {
+        anonymous: "always",
+        asyncArrow: "always",
+        named: "never"
+      }],
+      "no-console": ["warn", { allow: ["error", "warn", "table", "info"] }],
       "no-else-return": ["error", { allowElseIf: true }]
     }
   }

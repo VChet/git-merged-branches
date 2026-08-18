@@ -1,9 +1,9 @@
 # git-merged-branches
 
-[![npm version][npm-version-img]][npm-version-href]
-[![npm downloads][npm-downloads-img]][npm-downloads-href]
-[![build][build-img]][build-href]
-[![ask DeepWiki][deep-wiki-img]][deep-wiki-href]
+[![npm version][npm-version-img]][npm-version-link]
+[![npm downloads][npm-downloads-img]][npm-downloads-link]
+[![build][build-img]][build-link]
+[![socket][socket-img]][socket-link]
 
 **git-merged-branches is a command-line utility to view branches merged into a selected base branch (e.g., master or main).**
 
@@ -92,10 +92,6 @@ refactor/#55_cleanup https://github.com/org/repo/issues/55
 
 If the configuration is invalid, warnings will be shown and the utility will skip formatting URLs.
 
-## Documentation
-
-- [DeepWiki](https://deepwiki.com/VChet/git-merged-branches)
-
 ## Development
 
 To contribute or test locally:
@@ -139,10 +135,10 @@ or report [issues](https://github.com/VChet/git-merged-branches/issues).
 
 <!-- Badges -->
 [npm-version-img]: https://img.shields.io/npm/v/git-merged-branches?style=flat-square
-[npm-version-href]: https://npmjs.com/package/git-merged-branches
+[npm-version-link]: https://npmjs.com/package/git-merged-branches
 [npm-downloads-img]: https://img.shields.io/npm/dm/git-merged-branches?style=flat-square
-[npm-downloads-href]: https://npmjs.com/package/git-merged-branches
+[npm-downloads-link]: https://npmjs.com/package/git-merged-branches
 [build-img]: https://img.shields.io/github/actions/workflow/status/VChet/git-merged-branches/build.yaml?style=flat-square
-[build-href]: https://github.com/VChet/git-merged-branches/actions/workflows/build.yml
-[deep-wiki-img]: https://img.shields.io/badge/ask-DeepWiki-blue?style=flat-square
-[deep-wiki-href]: https://deepwiki.com/VChet/git-merged-branches
+[build-link]: https://github.com/VChet/git-merged-branches/actions/workflows/build.yml
+[socket-img]: https://badge.socket.dev/npm/package/git-merged-branches
+[socket-link]: https://socket.dev/npm/package/git-merged-branches
