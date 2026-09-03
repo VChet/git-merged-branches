@@ -1,4 +1,6 @@
 minimumReleaseAge: 0
-shellEmulator: true
+minimumReleaseAgeExcludePrune: true
 trustPolicy: no-downgrade
+ignoreScripts: true
+shellEmulator: true
 packages: [.]

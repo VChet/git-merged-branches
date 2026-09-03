@@ -7,7 +7,7 @@
     "name": "VChet",
     "url": "https://github.com/VChet"
   },
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@11.25.0",
   "license": "MIT",
   "homepage": "https://github.com/VChet/git-merged-branches#readme",
   "repository": {
@@ -45,13 +45,13 @@
     "release": "commit-and-tag-version"
   },
   "devDependencies": {
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.4.1",
     "commit-and-tag-version": "^13.1.2",
-    "eslint": "^10.8.1",
+    "eslint": "^10.9.1",
     "neostandard": "0.14.0-next.1",
-    "publint": "^0.3.23",
-    "tsdown": "^0.22.14",
+    "publint": "^0.3.24",
+    "tsdown": "^0.23.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.10"
+    "vitest": "^5.0.0"
   }
 }
